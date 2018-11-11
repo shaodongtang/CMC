@@ -1,0 +1,206 @@
+%by 14级天大仁爱管理系金工唐绍东
+%QQ 1096084877
+% cmc.sty放入\texlive\texmf-local\tex\latex\local安装参考（http://wenda.latexstudio.net/article/1039）
+\ProvidesPackage{CMC}[2018/10/21 v1.1 Non-standard LaTeX package]
+%\documentclass[11pt,twoside,space]{article}
+%\usepackage{CMC}  % .sty 向总定制
+
+
+\RequirePackage[mtphrb]{mtpro2}
+\RequirePackage[heading]{ctex}
+
+
+%------------------------------- 大题 ----------------------------------%
+\ctexset{section = {name = {,、\hspace*{-5mm}},number = \chinese{section},format = {\zihao{5}\raggedright}}}
+\RequirePackage{titlesec}%titlesec宏包调整section与正文间距
+\titlespacing*{\section}{0pt}{9pt}{4pt}
+%------------------------------- 大题 ----------------------------------%
+
+%=============================大题\dati{}{}==================================
+%2017/10/29 大题大学生数学竞赛数学类原卷风格
+\RequirePackage{array}
+\RequirePackage{CJKnumb}  % 中文小写数字
+%\usepackage{calc}
+\newcounter{dati}     % 大题序号计数器
+\newcommand{\datixuhao}{{\stepcounter{dati}\CJKnumber{\thedati}、}\;}%输出大题序号,为"中文小写数字、"形式
+\newcommand{\tbjifen}{\begin{tabular}{|m{3em}<{\centering}|m{3em}<{\centering}|}\hline \makebox[3em][s]{得分}&\rule{0pt}{6mm}\\\hline 
+		阅卷人& \rule{0pt}{6mm}\\\hline
+\end{tabular}}%大题前计分表格
+\newcommand{\dati}[2]{\raisebox{-3.5ex}{\begin{minipage}[b]{7.5em}\hspace*{-1.9em}\tbjifen\end{minipage}}%输出大题前计分表,下沉4个X字符高度,可调整
+\begin{minipage}[t]{0.766\textwidth} {\hspace*{2.55em}\datixuhao #1}#2\end{minipage}}%输出大题序号,题型,大题说明,
+%===============================大题\dati{}{}================================
+
+
+%------------------------------ 选择题 ----------------------------------%
+\RequirePackage{tasks}%选择题宏包，tasks环境
+\settasks{counter-format={tsk[A].},
+	      label-offset={0.4em},
+          label-align=left,
+          column-sep={2pt},
+          item-indent={1pt},before-skip={-0.7em},after-skip={-0.7em}}
+% 选择题示例 
+%\begin{tasks}(4)
+%	\task 
+%	\task 
+%	\task 
+%	\task 
+%\end{tasks}
+%------------------------------ 选择题 ----------------------------------%
+
+
+
+%%%--------------------------数学类---------------------------%%%
+%=======================================================================
+\RequirePackage{amsmath}
+\everymath{\displaystyle} %全行间公式，不用一句一句的加\displaystyle
+%\allowdisplaybreaks[4]%%%公式换页
+\def\dif{\mathop{}\!\mathrm{d}}  %微分算子
+\DeclareMathOperator{\rank}{rank} %矩阵的秩
+\RequirePackage{bm} %加粗
+\RequirePackage{extarrows} %长等号
+%\RequirePackage[fourier]{varint} %李清的可以修改积分符号的宏包
+
+
+\RequirePackage{mathrsfs}
+\RequirePackage{scalerel} %\scaleobj{1.5}{} 缩放公式大小
+
+%%------------------------------------------------------------------------------------------------
+%%---------------------------------- 定理\引理\定义样式设置 ------------------------------------%%
+\RequirePackage{amsthm}
+\renewcommand{\proofname}{\zhongsong{证明}}
+%\newenvironment{proof}{\par\noindent{\zhongsong{证明.\,}}}{\hspace*{\fill}{$\Box$}\par}
+%\newenvironment{proof}{\par\noindent{\zhongsong{证明.\,}}\small}{\hfill$\Box$\quad\par}
+\newenvironment{Proof}{\par\noindent{\zhongsong{证明.\,}}\small}{\hfill$\Box$\quad\par}
+\newenvironment{Solution}{\par\noindent{\zhongsong{解.\,}}}{\hspace*{\fill}{$\Diamond$}\par}
+%-------------------------------------------------------------------------------------------
+%\RequirePackage{amsthm}
+\RequirePackage{thmtools}
+\declaretheoremstyle[
+spaceabove=-10pt, spacebelow=-10pt,
+headfont=\normalfont\bfseries,
+notefont=\mdseries, notebraces={(}{)},
+bodyfont=\normalfont,
+postheadspace=0.5em,
+headpunct={:},
+qed=$\blacktriangleleft$,
+numbered=no
+]{solstyle}
+\declaretheorem[style=solstyle,shaded={rulecolor=white,
+rulewidth=0.3pt, bgcolor={rgb}{1,1,1}},name=解]{solution}
+%%------------------------------------------------------------------------------------------------
+%-----------------------2017/9/1更新--------------------------
+
+
+
+
+%-----------------------------------------------字体设置-----------------------------------------------------%
+
+%%--------------------------嫌弃新罗马字体----------------------------
+%\RequirePackage[T1]{fontenc}
+%\RequirePackage{mathptmx}
+\newfontfamily\TNRBI{Times New Roman Bold Italic} %新罗马字体英文的粗斜体
+\newcommand{\bfit}[1]{\text{\TNRBI #1}} %amsmath 
+%%-----------------------------------------------------------------------------
+
+%-------------------------------------中文字体设置------------------------------------------%% 已弃方正字体
+\RequirePackage{xeCJK}
+\setCJKmainfont{Adobe Song Std L}%中文默认字体:adobe 宋体
+\renewcommand{\heiti}{\CJKfontspec{Adobe Heiti Std R}}%adobe 黑体
+\renewcommand{\fangsong}{\CJKfontspec{Adobe Fangsong Std R}}%adobe 仿宋
+\renewcommand{\kaishu}{\CJKfontspec{Adobe Kaiti Std R}}%adobe 楷体
+\def\xingkai{\CJKfontspec{STXingkai}}%华文行楷
+\def\zhongsong{\CJKfontspec{STZhongsong}} %华文中宋
+%=============================================================================================================
+
+
+%------------------------------------------页眉页脚-%-装订线----------------------------------------%
+\newlength{\Lzdx}\setlength{\Lzdx}{10.2cm}
+\RequirePackage{tikz}
+\usetikzlibrary{circuits} %circuit handle symbol
+\RequirePackage{lastpage}
+\RequirePackage{dashrule}%使用虚线宏包
+%%------------------------------分数线，引导线的设置---------------------------------------------
+\def\cfsxian#1{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(5cm,0pt)node[right=-1mm]{(#1~分)\!\!};}\\}
+\def\dfsxian#1{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(3cm,0pt)node[right=-1mm]{(#1~分)\!\!};}\\}
+\def\fsxian#1#2{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(#1cm,0pt)node[right=-1mm]{(#2~分)\!\!};}\\}
+%\dfsxian{得分}\cfsxian{得分}\fsxian{长度(cm)}{得分}
+%%-----------------------------------------------------------------------------------------------
+\RequirePackage{calc}%使用四则运算宏包%\usepackage{ulem}%画线的宏包
+\RequirePackage{fancyhdr}%使用页眉页脚宏包
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[CO]{\hspace*{1.5cm}第 \thepage 页 , 共 \pageref{LastPage} 页}
+\fancyfoot[CE]{第 \thepage 页 , 共 \pageref{LastPage} 页\hspace*{1.5cm}}
+\fancyhead[LO]{\hspace*{-2.5cm}\parbox{\paperheight}{\vspace*{-6.3mm}
+\begin{tikzpicture}[line width=0.8pt,circuit]
+\node (ym) [circle, draw,scale = 1.5] at (0pt,-15.5em) {};
+\draw[dash pattern=on 6pt off 6pt on 6pt off 6pt] (0,-\Lzdx-16.5em) to
+[circuit handle symbol={draw,shape=circle,pos=0.3},minimum size=5.5mm] (ym);
+\node (yx) [circle, draw,scale = 1.5] at (0pt,0pt) {};
+\draw[dash pattern=on 6pt off 6pt on 6pt off 6pt] (yx) node (a) [below=1em]{\rotatebox[origin=c]{90}{密封线\quad 答题时不要超过此线}} to
+[circuit handle symbol={draw,shape=circle,pos=0.7},minimum size=5.5mm] (0,\Lzdx+1em) ;
+\node  [scale=1] at (-1.2cm,-8.1em) {\rotatebox[origin=c]{90}{~省~市~\underline{\makebox[25mm][c]{}}\songti~学~校~\underline{\makebox[32mm][c]{}}\songti~准~考~证~号~\underline{\makebox[34mm][c]{}} \songti~姓~名~\underline{\makebox[30mm][c]{}}~考~场~号~\underline{\makebox[16mm][c]{}}~座~位~号~\underline{\makebox[20mm][c]{}}}};
+\end{tikzpicture}}}
+\renewcommand{\headrulewidth}{0pt}
+%-------------------------------------------------------------------------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[colorlinks=true,bookmarksnumbered=true,linkcolor=black]{hyperref}
+\AtBeginDocument{\hypersetup{pdftitle={\@title},
+	pdfauthor={\@author},
+	pdfsubject={中国大学生数学竞赛}, %pdf主题 %\@date
+	pdfcreator={\@author},
+	pdfproducer={\LaTeX},
+	pdfkeywords={\@title,\@author, \@type, 大学生数学竞赛}
+	}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%--------------- 页面设置 ---------------%%
+\RequirePackage{geometry}
+\geometry{paperwidth=19.5cm,paperheight=27cm,top=1.5cm,bottom=2cm,right=2cm}
+\oddsidemargin=1cm   %奇数页页边距
+\evensidemargin=-0.6cm %偶数页页边距
+
+
+%%---------------------------------------------添加水印-----------------------------------------------------------%%
+\RequirePackage{graphicx} %插图
+\RequirePackage{wrapfig}
+\RequirePackage{eso-pic}
+\newcommand{\watermark}[3]{\AddToShipoutPictureBG{%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill%
+\centering%
+\tikz[remember picture, overlay]%
+\node [rotate = #1, scale = #2] at (current page.center)%
+{\textcolor{red!42}{#3}};  %gray!80!cyan!30
+\vfill}}}
+%\watermark{48}{11}{机密}  % 水印--第六届数学类
+%\watermark{60}{6}{14-金融工程-白兔兔}
+%%---------------------------------------------添加水印-----------------------------------------------------------%%
+
+%%---------------------------------------------表格-----------------------------------------------------------%%
+%\usepackage{float}
+\usepackage{tabularx}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+
+
+%=======================================================================
+\RequirePackage{color,xcolor}%-颜色-%
+%==============================================================================
+
+\RequirePackage{enumitem}
+
+\def\examtime#1{\def\@examtime{#1}}
+\def\type#1{\def\@type{#1}}
+\def\maketitle{
+{\centering
+\begin{tabularx}{\textwidth}{@{}XYX}
+\multicolumn{3}{c}{\zihao{-3}\heiti\@title}\\[2mm]
+\multicolumn{3}{c}{\zihao{4}（ \@type, \@date）}\\[1.1em]
+{\heiti\zihao{-4} 绝密$\bigstar$启用前} & (\@author) &\\[0.6em]
+\multicolumn{3}{c}{\zihao{4}考试形式：\underline{~闭卷~}\hspace{2mm}考试时间：\underline{~~\@examtime~~}分钟~\hspace{2mm}满分：\underline{~~100~~}分}		
+\end{tabularx}}}
+
+
+\endinput
