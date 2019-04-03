@@ -1,67 +1,94 @@
 \documentclass[11pt,twoside,space]{article}
 \usepackage{CMC}
-\title{第九届中国大学生数学竞赛预赛试卷}
+\title{第十届全国大学生数学竞赛决赛参考答案}
 \author{14 金融工程--零蛋大}
-\date{2017年10月28日}
-\type{数学类}
+\date{2019年3月30日}
+\type{非数学类}
 \examtime{150}
 \watermark{48}{11}{机密}
-%\usepackage{blindtext}
 \begin{document}
-\maketitle
+\maketitle%\vspace*{-0.8em}
 \begin{center}
-\zihao{-4}
-\begin{tabular}{|m{3em}<{\centering}|*{7}{m{3.5em}<{\centering}|}}
-\hline
-题~号 & 一 & 二 & 三  & 四 & 五 & 六  &总~~分 \\
-\hline
-满~分 & 15 & 15 & 15  & 20 & 15 & 20  &\raisebox{0.38em}{100}\rule{0pt}{8mm}\\
-\hline
-得~分 &    &    &     &    &    &     &\rule{0pt}{8mm}\\
-\hline	
-\end{tabular}\vspace*{0.6em}		
-$\begin{aligned}
-\mbox{注意：}
-&1.\,\mbox{所有答题都须写在试卷密封线右边,写在其他纸上一律无效}.\hspace{12.0cm}\\
-&2.\,\mbox{密封线左边请勿答题,密封线外不得有姓名及相关标记}.\\
-&3.\,\mbox{如答题空白不够,可写在当页背面,并标明题号}.\\[-2mm]
-\end{aligned}$	
+	\zihao{-4}
+	\begin{tabular}{|m{2.6em}<{\centering}|*{8}{m{3em}<{\centering}|}}
+		\hline
+		题~号 & 一 & 二 & 三   & 四 & 五 & 六  & 七  &总~~分 \\\hline
+		满~分 & 30 & 12  & 12  & 12 & 12 & 11  & 11  &\raisebox{0.4em}{100}\rule{0pt}{8mm}\\
+		\hline
+		得~分 &    &    &     &    &    &     &    &\rule{0pt}{8mm} \\
+		\hline	
+	\end{tabular}\vspace*{0.6em}		
+	$\begin{aligned}
+	\mbox{注意：}
+	&\text{本试卷共七大题, 满分100分, 考试时间为150分钟.}\\
+	&1.\,\mbox{所有答题都须写在试卷密封线右边,写在其他纸上一律无效}.\hspace{12.0cm}\\
+	&2.\,\mbox{密封线左边请勿答题,密封线外不得有姓名及相关标记}.\\
+	&3.\,\mbox{如答题空白不够,可写在当页背面,并标明题号}.\\[-2mm]
+	\end{aligned}$	
 \end{center}
 \setlength{\marginparsep}{-0.8cm}
 %%==================================================================
 %%—————————————————————————————正文开始———————————————————————————————
-%%==================================================================
-
+%%==================================================================	
+	
 
 \section{表格}
 官方的题数无规律，只能单独设置
 
 \section{中文字体说明}
-adobe 宋体(默认)，adobe 黑体\verb|\|heiti，adobe 仿宋\verb|\|fangsong，adobe 楷体\verb|\|kaishu，华文行楷\verb|\|xingkai，华文中宋\verb|\|zhongsong
 
-
-弃方正字体
+\begin{table}[htbp]
+\caption{中文字体说明}
+\centering
+\begin{tabular}{|cll|}
+\hline 
+\songti adobe宋体    & Adobe Song Std L     & \verb|\songti adobe宋体|    \\
+\kaishu adobe楷体    & Adobe Kaiti Std R    & \verb|\kaishu adobe楷体|    \\
+\heiti adobe黑体     & Adobe Heiti Std R    & \verb|\heiti adobe黑体|     \\
+\fangsong adobe仿宋  & Adobe Fangsong Std R & \verb|\fangsong adobe仿宋|  \\
+\zhongsong 华文中宋  & STZhongsong          & \verb|\zhongsong 华文中宋|   \\
+\xingkai 华文行楷    & STXingkai            &  \verb|\xingkai 华文行楷|    \\
+\hline	
+\end{tabular} 
+\end{table}
 
 \section{英文字体说明}
-英文字体粗斜：推荐使用 \verb|$\bm{abc}$|$\bm{abc}$，不推荐\verb|\|bfitTimes New Roman Bold Italic
 
+英文字体粗斜：
+\begin{enumerate}
+\item 推荐使用 \verb|$\bm{abc}$|$\bm{abc}$
+\item 不推荐 \verb|\bfit{Times New Roman Bold Italic}| \bfit{Times New Roman Bold Italic}
+\end{enumerate}
 
-加入数学字体mtpro2宏包，mtpro2宏包的安装参考 LaTeX技巧693：安装 MathTime Professional 2 数学字体\url{http://www.latexstudio.net/archives/241.html}
-
+引入数学字体mtpro2宏包，mtpro2宏包的安装参考 LaTeX技巧693：安装 MathTime Professional 2 数学字体\url{http://www.latexstudio.net/archives/241.html}
 
 弃Times New Roman 风格
 
 \section{解答环境}
 Proof,Solution
+\begin{enumerate}
+\item Solution 环境
+\begin{Solution}
+	9899 Solution 环境
+\end{Solution}
+\item Proof 环境
+\end{enumerate}
+
 
 \verb|\dfsxian{得分}|，\verb|\cfsxian{得分}|，\verb|\fsxian{长度(cm)}{得分}|
 
-\dfsxian{9}
-\cfsxian{10}
+\begin{enumerate}
+\item 短分数线示例 \verb|\dfsxian{9}|
+      \dfsxian{9}
+\item 长分数线示例 \verb|\dfsxian{10}|
+      \cfsxian{10}    
+\item 任意长度分数线示例(1cm) \verb|\fsxian{1}{10}|
 \fsxian{1}{10}
+\end{enumerate}
+
 
 \section{大题}
-\verb|\section{大题}|， \verb|\dati{}{}| 二选一\par
+\verb|\section{大题}|， \verb|\dati{}{大题}| 二选一\par
 \dati{}{(本题15分)\;\;%\\[2mm]
 	在空间直角坐标系中，设单叶双曲面 $\Gamma$ 的方程为 $x^2+y^2-z^2=1$,设 $P$ 为空间的平面, 它交 $\Gamma$ 于一抛物线 $C$. 求该平面的法线与 $z$- 轴的夹角.\\} 
 
@@ -75,6 +102,7 @@ Proof,Solution
 \end{tasks}
 
 \section{一面双页}
+
 先保存再编译，1-6 是从第一页到第六页
 \begin{verbatim*}
 \documentclass{article}
@@ -85,12 +113,11 @@ Proof,Solution
 offset=3mm 0mm,column,delta=-10 -0mm]{17mathSJ.pdf}	
 \end{document}
 \end{verbatim*}
-见末尾。
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%------------------------------------结束--------------------------------------
+%-------------------------------结束---------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
 \end{document}
