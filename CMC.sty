@@ -21,14 +21,22 @@
 \RequirePackage{array}
 %\RequirePackage{CJKnumb} %中文小写数字\CJKnumber{\thedati}于20190402弃之
 %\usepackage{calc}
-\newcounter{dati}     % 大题序号计数器
+\newcounter{dati} % 大题序号计数器
 \newcommand{\datixuhao}{{\stepcounter{dati}\zhnumber{\thedati}、}\;}%输出大题序号,为"中文小写数字、"形式
-\newcommand{\tbjifen}{\begin{tabular}{|m{3em}<{\centering}|m{3em}<{\centering}|}\hline \makebox[3em][s]{得分}&\rule{0pt}{6mm}\\\hline 
-		阅卷人& \rule{0pt}{6mm}\\\hline
-\end{tabular}}%大题前计分表格
-\newcommand{\dati}[2]{\raisebox{-3.5ex}{\begin{minipage}[b]{7.5em}\hspace*{-1.9em}\tbjifen\end{minipage}}%输出大题前计分表,下沉4个X字符高度,可调整
-	\begin{minipage}[t]{0.766\textwidth} {\hspace*{2.55em}\datixuhao #1}#2\end{minipage}}%输出大题序号,题型,大题说明,
-%===============================大题\dati{}{}================================
+\newcommand{\tbjifen}{
+	\begin{tabular}{|c|m{3\ccwd}|}
+	\hline
+	\makebox[3\ccwd][s]{得分} & \rule{0pt}{6mm}\\\hline 
+           阅卷人 & \rule{0pt}{6mm}\\\hline
+\end{tabular}} % 大题前计分表格
+\newcommand{\dati}[1]{\noindent\raisebox{-3.5ex}{
+	\begin{minipage}[b]{9.2\ccwd}
+		\tbjifen
+	\end{minipage}}%输出大题前计分表,下沉3.5个X字符高度,可调整
+	\begin{minipage}[t]
+		{\textwidth-9.2\ccwd}\hspace*{2.55em}\datixuhao #1
+	\end{minipage}}%输出大题序号,大题
+%===============================大题\dati{题目}================================
 
 
 %------------------------------ 选择题 ----------------------------------%
@@ -75,20 +83,22 @@
 
 %====================================================================%
 %---------------------------------------solution环境-------------------------------------------------------------%
-%\RequirePackage{amsthm}
-\RequirePackage{thmtools}
-\declaretheoremstyle[
-spaceabove=-10pt, spacebelow=-10pt,
-headfont=\normalfont\bfseries,
-notefont=\mdseries, notebraces={(}{)},
-bodyfont=\normalfont,
-postheadspace=0.5em,
-headpunct={:},
-qed=$\blacktriangleleft$,
-numbered=no
-]{solstyle}
-\declaretheorem[style=solstyle,shaded={rulecolor=white,
-rulewidth=0.3pt, bgcolor={rgb}{1,1,1}},name=解]{solution}
+%%\RequirePackage{amsthm}
+%\RequirePackage{thmtools}
+%\declaretheoremstyle[
+%spaceabove=-10pt, spacebelow=-10pt,
+%headfont=\normalfont\bfseries,
+%notefont=\mdseries, notebraces={(}{)},
+%bodyfont=\normalfont,
+%postheadspace=0.5em,
+%headpunct={:},
+%qed=$\blacktriangleleft$,
+%numbered=no
+%]{solstyle}
+%\declaretheorem[style=solstyle,shaded={rulecolor=white,
+%rulewidth=0.3pt, bgcolor={rgb}{1,1,1}},name=解]{solution}
+%\newenvironment{Solution}{\par\noindent{\zhongsong{解.\,}}}{\hspace*{\fill}{$\Diamond$}\par}
+\newenvironment{solution}{\par\noindent{\zhongsong{解.\,}}}{\hspace*{\fill}{$\Diamond$}\par}
 %%----------------------------------------solution环境---------------------------------------------------------%
 %====================================================================%
 %-----------------------2017/9/1更新--------------------------
@@ -105,7 +115,7 @@ rulewidth=0.3pt, bgcolor={rgb}{1,1,1}},name=解]{solution}
 
 %-------------------------------------中文字体设置------------------------------------------% 已弃方正字体
 \RequirePackage{xeCJK}
-\setCJKmainfont{Adobe Song Std L}%中文默认字体:adobe 宋体
+\setCJKmainfont{Adobe Song Std L}%[BoldFont={Adobe Heiti Std R},ItalicFont={Adobe Kaiti Std Ri}]
 \renewcommand{\heiti}{\CJKfontspec{Adobe Heiti Std R}}%adobe 黑体
 \renewcommand{\fangsong}{\CJKfontspec{Adobe Fangsong Std R}}%adobe 仿宋
 \renewcommand{\kaishu}{\CJKfontspec{Adobe Kaiti Std R}}%adobe 楷体
@@ -124,9 +134,9 @@ rulewidth=0.3pt, bgcolor={rgb}{1,1,1}},name=解]{solution}
 \def\cfsxian#1{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(5cm,0pt)node[right=-1mm]{(#1~分)\!\!};}\\}
 \def\dfsxian#1{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(3cm,0pt)node[right=-1mm]{(#1~分)\!\!};}\\}
 \def\fsxian#1#2{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(#1cm,0pt)node[right=-1mm]{(#2~分)\!\!};}\\}
-\def\defen#1#2{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(#1cm,0pt)node[right=-1mm]{(#2~分)\!\!};}\\}
-\def\score#1#2{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(#1cm,0pt)node[right=-1mm]{(#2~分)\!\!};}\\}
-%\dfsxian{得分}\cfsxian{得分}\fsxian{长度(cm)}{得分}
+\newcommand{\defen}[2][1cm]{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(#1 ,0pt)node[right=-1mm]{(#2~分)};}\newline}
+\newcommand{\score}[2][1cm]{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(#1 ,0pt)node[right=-1mm]{(#2~分)};}\newline}
+%\dfsxian{得分}\cfsxian{得分}\fsxian{长度(cm)}{得分} \defen[默认1cm]{得分}\score[默认1cm]{得分}
 %%-----------------------------------------------------------------------------------------------
 \RequirePackage{calc}%使用四则运算宏包%\usepackage{ulem}%画线的宏包
 \RequirePackage{fancyhdr}%使用页眉页脚宏包
@@ -163,7 +173,7 @@ rulewidth=0.3pt, bgcolor={rgb}{1,1,1}},name=解]{solution}
 \geometry{paperwidth=21.587cm,paperheight=27cm,top=2cm,bottom=2cm} %
   \oddsidemargin=0.5cm   %奇数页页边距
   \evensidemargin=0.5cm %偶数页页边距
-
+\setlength{\marginparsep}{-0.8cm}
 
 
 
@@ -194,7 +204,11 @@ rulewidth=0.3pt, bgcolor={rgb}{1,1,1}},name=解]{solution}
 %\RequirePackage{xcolor}
 \newcommand{\blankcolor}[1]{\color{black}#1}
 \DeclareOption{ans}{\providecommand{\blankcolor}[1]{{\color{black}#1}}}
-\DeclareOption{shijuan}{\renewcommand{\blankcolor}[1]{{\color{white}#1}}}
+\DeclareOption{shijuan}{\renewcommand{\blankcolor}[1]{{\color{white}#1}}
+                                                 \renewenvironment{solution}{\setbox0\vbox\bgroup}{\egroup\unskip}
+                                                \renewenvironment{Solution}{\setbox0\vbox\bgroup}{\egroup\unskip}
+                                                \renewenvironment{Proof}{\setbox0\vbox\bgroup}{\egroup\unskip}
+                                                \renewenvironment{proof}{\setbox0\vbox\bgroup}{\egroup\unskip} }
 \ProcessOptions
 \newcommand{\blank}[1]{\underline{\,\blankcolor{#1}\,}}
 % ==================== \blank{答案} %2019/4/2 ==================== %
