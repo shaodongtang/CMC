@@ -21,5 +21,11 @@
 
 1. v1.00 见 http://www.latexstudio.net/archives/11363.html
 2. v1.10 引入数学字体宏包mtpro2 见 http://www.latexstudio.net/archives/51505.html
-3. v1.20 1、加入shijuan（试卷），ans（答案）参数；2、装订线命令修改\defen[默认1cm]{得分}\score[默认1cm]{得分}；3大题命令修改为\dati{题目}
+3. v1.20 见 http://www.latexstudio.net/archives/51635.html
+
+#### 最新版本的修改说明
+
+1、加入shijuan（试卷），ans（答案）可选参数；
+2、装订线命令修改（1cm为默认，\defen{得分}）\defen[2cm]{得分}、\score[2cm]{得分}；
+3、大题命令修改为\dati{题目}
 
