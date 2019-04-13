@@ -14,6 +14,7 @@
 
 1. CMC宏包使用说明见 CMC_guide.tex
 2. 模板例子见 17mathSJ_1028.tex
+3. 文档中文字体： 华文行楷、华文中宋、adobe 楷体、adobe 黑体、adobe 仿宋、adobe 宋体
 
 #### CMC.sty版本历史
 
