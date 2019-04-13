@@ -7,6 +7,7 @@
 
 1. cmc.sty放入 \texlive\texmf-local\tex\latex\local
 2. 安装mtpro2数学字体参考 http://www.latexstudio.net/archives/241.html
+                         texlive安装MTPro2.mp4
 3. varint宏包参考 http://www.latexstudio.net/archives/771.html
 
 #### 模板的使用说明
@@ -18,4 +19,5 @@
 
 1. v1.00 见 http://www.latexstudio.net/archives/11363.html
 2. v1.10 引入数学字体宏包mtpro2 见 http://www.latexstudio.net/archives/51505.html
-3. v1.20
+3. v1.20 1、加入shijuan（试卷），ans（答案）参数；2、装订线命令修改\defen[默认1cm]{得分}\score[默认1cm]{得分}；3大题命令修改为\dati{题目}
+
