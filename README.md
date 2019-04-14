@@ -7,7 +7,7 @@
 
 1. cmc.sty放入 \texlive\texmf-local\tex\latex\local
 2. 安装mtpro2数学字体参考 http://www.latexstudio.net/archives/241.html 以及texlive安装MTPro2.mp4
-3. varint宏包参考 http://www.latexstudio.net/archives/771.html
+3. varint宏包（最新版本已删除）参考 http://www.latexstudio.net/archives/771.html
 
 #### 模板的使用说明
 
