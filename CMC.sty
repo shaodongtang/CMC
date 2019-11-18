@@ -1,13 +1,13 @@
 %by 14级天大仁爱管理系金工唐绍东
 %QQ 1096084877
-% cmc.sty放入\texlive\texmf-local\tex\latex\local安装参考（http://wenda.latexstudio.net/article/1039）
-\ProvidesPackage{CMC}[2019/04/02 v1.2 Non-standard LaTeX package]
+% cmc.sty放入\texlive\texmf-local\tex\latex\local
+\ProvidesPackage{CMC}[2019/04/17 v1.21 Non-standard LaTeX package]
 %\documentclass[11pt,twoside,space]{article}
 %\usepackage{CMC}  % .sty 向总定制
 
 
 \RequirePackage[mtphrb]{mtpro2}
-\RequirePackage[heading]{ctex}
+\RequirePackage[UTF8,fontset=adobe,heading]{ctex}
 
 
 %------------------------------- 大题 ----------------------------------%
@@ -21,21 +21,20 @@
 \RequirePackage{array}
 %\RequirePackage{CJKnumb} %中文小写数字\CJKnumber{\thedati}于20190402弃之
 %\usepackage{calc}
-\newcounter{dati} % 大题序号计数器
-\newcommand{\datixuhao}{{\stepcounter{dati}\zhnumber{\thedati}、}\;}%输出大题序号,为"中文小写数字、"形式
-\newcommand{\tbjifen}{
+\newcommand{\scoretable}{
 	\begin{tabular}{|c|m{3\ccwd}|}
-	\hline
-	\makebox[3\ccwd][s]{得分} & \rule{0pt}{6mm}\\\hline 
-           阅卷人 & \rule{0pt}{6mm}\\\hline
-\end{tabular}} % 大题前计分表格
-\newcommand{\dati}[1]{\noindent\raisebox{-3.5ex}{
-	\begin{minipage}[b]{9.2\ccwd}
-		\tbjifen
+		\hline
+		\makebox[3\ccwd][s]{得分} & \rule{0pt}{6mm}\\\hline 
+		阅卷人 & \rule{0pt}{6mm}\\\hline
+\end{tabular}} % 计分表格
+\newcounter{dati} % 定义大题计数器
+\newcommand{\dati}[2][2.55em]{\noindent\raisebox{-3.5ex}{
+		\begin{minipage}[b]{9.2\ccwd}
+			\hspace{-2.5mm}\scoretable
 	\end{minipage}}%输出大题前计分表,下沉3.5个X字符高度,可调整
-	\begin{minipage}[t]
-		{\textwidth-9.2\ccwd}\hspace*{2.55em}\datixuhao #1
-	\end{minipage}}%输出大题序号,大题
+	\begin{minipage}[t]{\textwidth-9.2\ccwd}
+		\hspace*{#1}\stepcounter{dati}\zhnumber{\thedati}、#2
+\end{minipage}}%输出大题序号,大题
 %===============================大题\dati{题目}================================
 
 
@@ -65,7 +64,9 @@
 \def\dif{\mathop{}\!\mathrm{d}}  %微分算子
 \DeclareMathOperator{\rank}{rank} %矩阵的秩
 \let\le=\leqslant
+\let\leq=\leqslant
 \let\ge=\geqslant
+\let\geq=\geqslant
 \RequirePackage{bm} %加粗
 \RequirePackage{extarrows} %长等号
 %\RequirePackage[fourier]{varint} %李清的可以修改积分符号的宏包
@@ -74,34 +75,13 @@
 \RequirePackage{mathrsfs}
 \RequirePackage{scalerel} %\scaleobj{1.5}{} 缩放公式大小
 
-%%------------------------------------------------------------------------------------------------
-%%---------------------------------- 定理\引理\定义样式设置 ------------------------------------%%
+
+%%---------------------------------- Proof\proof\Solution\solution环境设置 ------------------------------------%%
 \RequirePackage{amsthm}
 \renewcommand{\proofname}{\zhongsong{证明}}
-\newenvironment{Proof}{\par\noindent{\zhongsong{证明.\,}}\small}{\hspace*{\fill}$\Box$\quad\par}
-\newenvironment{Solution}{\par\noindent{\zhongsong{解.\,}}}{\hspace*{\fill}{$\Diamond$}\par}
-
-%====================================================================%
-%---------------------------------------solution环境-------------------------------------------------------------%
-%%\RequirePackage{amsthm}
-%\RequirePackage{thmtools}
-%\declaretheoremstyle[
-%spaceabove=-10pt, spacebelow=-10pt,
-%headfont=\normalfont\bfseries,
-%notefont=\mdseries, notebraces={(}{)},
-%bodyfont=\normalfont,
-%postheadspace=0.5em,
-%headpunct={:},
-%qed=$\blacktriangleleft$,
-%numbered=no
-%]{solstyle}
-%\declaretheorem[style=solstyle,shaded={rulecolor=white,
-%rulewidth=0.3pt, bgcolor={rgb}{1,1,1}},name=解]{solution}
-%\newenvironment{Solution}{\par\noindent{\zhongsong{解.\,}}}{\hspace*{\fill}{$\Diamond$}\par}
-\newenvironment{solution}{\par\noindent{\zhongsong{解.\,}}}{\hspace*{\fill}{$\Diamond$}\par}
-%%----------------------------------------solution环境---------------------------------------------------------%
-%====================================================================%
-%-----------------------2017/9/1更新--------------------------
+\newenvironment{Proof}{\par\noindent{\zhongsong{证明.\,}}\small}{\hspace*{\fill}$\Box$\quad\par} %大题证明环境
+\newenvironment{Solution}{\par\noindent{\zhongsong{解.\,}}}{\hspace*{\fill}{$\Diamond$}\par} % 大题解答环境
+\newenvironment{solution}{\par\noindent{\zhongsong{解.\,}}}{\hspace*{\fill}{$\Diamond$}\par}  % 填空题解答环境
 
 
 
@@ -114,46 +94,45 @@
 %%--------------------------------------------------------------------------------
 
 %-------------------------------------中文字体设置------------------------------------------% 已弃方正字体
-\RequirePackage{xeCJK}
-\setCJKmainfont{Adobe Song Std L}%[BoldFont={Adobe Heiti Std R},ItalicFont={Adobe Kaiti Std Ri}]
-\renewcommand{\heiti}{\CJKfontspec{Adobe Heiti Std R}}%adobe 黑体
-\renewcommand{\fangsong}{\CJKfontspec{Adobe Fangsong Std R}}%adobe 仿宋
-\renewcommand{\kaishu}{\CJKfontspec{Adobe Kaiti Std R}}%adobe 楷体
-\def\xingkai{\CJKfontspec{STXingkai}}%华文行楷
+%\renewcommand{\heiti}{\CJKfontspec{Adobe Heiti Std R}}%adobe 黑体
+%\renewcommand{\fangsong}{\CJKfontspec{Adobe Fangsong Std R}}%adobe 仿宋
+%\renewcommand{\kaishu}{\CJKfontspec{Adobe Kaiti Std R}}%adobe 楷体
+\newfontfamily\xingkai{STXingkai}
+%\def\xingkai{\CJKfontspec{STXingkai}}%华文行楷
+%\newfontfamily\zhongsong{STZhongsong}
 \def\zhongsong{\CJKfontspec{STZhongsong}} %华文中宋
 %===========================================================================
 
 
 %------------------------------------------页眉页脚-%-装订线----------------------------------------%
-\newlength{\Lzdx}\setlength{\Lzdx}{10.2cm}
 \RequirePackage{tikz}
+\usetikzlibrary{calc}
 \usetikzlibrary{circuits} %circuit handle symbol
 \RequirePackage{lastpage}
-\RequirePackage{dashrule}%使用虚线宏包
+%\RequirePackage{dashrule}%使用虚线宏包
 %%------------------------------分数线，引导线的设置---------------------------------------------
-\def\cfsxian#1{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(5cm,0pt)node[right=-1mm]{(#1~分)\!\!};}\\}
-\def\dfsxian#1{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(3cm,0pt)node[right=-1mm]{(#1~分)\!\!};}\\}
-\def\fsxian#1#2{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(#1cm,0pt)node[right=-1mm]{(#2~分)\!\!};}\\}
-\newcommand{\defen}[2][1cm]{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(#1 ,0pt)node[right=-1mm]{(#2~分)};}\newline}
-\newcommand{\score}[2][1cm]{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(#1 ,0pt)node[right=-1mm]{(#2~分)};}\newline}
-%\dfsxian{得分}\cfsxian{得分}\fsxian{长度(cm)}{得分} \defen[默认1cm]{得分}\score[默认1cm]{得分}
+\def\cfsxian#1{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(5cm,0pt)node[inner sep=0pt]{(#1~分)\!\!};}\\}
+\def\dfsxian#1{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(3cm,0pt)node[inner sep=0pt]{(#1~分)\!\!};}\\}
+\def\fsxian#1#2{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(#1cm,0pt)node[inner sep=0pt]{(#2~分)\!\!};}\\}
+\newcommand{\defen}[2][0cm]{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(#1 ,0pt)node[inner sep=0pt]{(#2~分)};}\newline}
+\newcommand{\score}[2][0cm]{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(#1 ,0pt)node[inner sep=0pt]{(#2~分)};}\newline}
+%\dfsxian{得分}\cfsxian{得分}\fsxian{长度(cm)}{得分} \defen[默认0cm]{得分}\score[默认0cm]{得分}
 %%-----------------------------------------------------------------------------------------------
-\RequirePackage{calc}%使用四则运算宏包%\usepackage{ulem}%画线的宏包
 \RequirePackage{fancyhdr}%使用页眉页脚宏包
 \pagestyle{fancy}
 \fancyhf{}
-\fancyfoot[CO]{\hspace*{1.5cm}第 \thepage 页 , 共 \pageref{LastPage} 页}
-\fancyfoot[CE]{第 \thepage 页 , 共 \pageref{LastPage} 页\hspace*{1.5cm}}
-\fancyhead[LO]{\hspace*{-2.2cm}\parbox{\paperheight}{\vspace*{-6.3mm}
-\begin{tikzpicture}[line width=0.4pt,circuit]
-\node (ym) [circle, draw,scale = 1.5] at (0pt,-15.5em) {};
-\draw[dash pattern=on 6pt off 6pt on 6pt off 6pt] (0,-\Lzdx-16.5em) to
-[circuit handle symbol={draw,shape=circle,pos=0.3},minimum size=5.5mm] (ym);
-\node (yx) [circle, draw,scale = 1.5] at (0pt,0pt) {};
-\draw[dash pattern=on 6pt off 6pt on 6pt off 6pt] (yx) node (a) [below=1em]{\rotatebox[origin=c]{90}{密封线\quad 答题时不要超过此线}} to
-[circuit handle symbol={draw,shape=circle,pos=0.7},minimum size=5.5mm] (0,\Lzdx+1em) ;
-\node  [scale=1] at (-1.1cm,-7.45em) {\rotatebox[origin=c]{90}{省市\underline{\makebox[25mm][c]{}}\songti 学校\underline{\makebox[32mm][c]{}}\songti~准考证号\underline{\makebox[34mm][c]{}} \songti 姓名\underline{\makebox[30mm][c]{}}考场号\underline{\makebox[16mm][c]{}}座位号\underline{\makebox[20mm][c]{}}}};
-\end{tikzpicture}}}
+\fancyfoot[CO]{\tikzstyle{cmcdash}=[dash pattern=on 6pt off 6pt on 6pt off 6pt]
+	\tikzstyle{cmccircle}=[circle,draw,scale=1.5]
+	\begin{tikzpicture}[remember picture,overlay]
+	\draw (current page.west)++(1.2cm,0) node (studyt) {\rotatebox[origin=c]{90}{省市\underline{\hspace{2.5cm}} 学校\underline{\hspace{3.2cm}}~准考证号\underline{\hspace{3.4cm}}  姓名\underline{\hspace{3cm}}考场号\underline{\hspace{1.6cm}}座位号\underline{\hspace{2cm}}}};
+	\draw (current page.west)++(2.27cm,0) node (o)  {\rotatebox[origin=c]{90}{\quad 密封线\quad 答题时不要超过此线}};
+	\node[cmccircle] (obelow) at ($(o)+(0,-3.2cm)$) {};
+	\node[cmccircle] (oabove) at ($(o)+(0,3.2cm)$) {};
+	\draw (oabove)++(0,7.5cm) node[cmccircle] (oabovea) {};
+	\draw (obelow)++(0,-7.5cm) node[cmccircle] (obelowa) {};
+	\draw[cmcdash] (oabove) -- (oabovea)-- ++(0,10);
+	\draw[cmcdash] (obelow) -- (obelowa) -- ++(0,-10);
+	\end{tikzpicture}}
 \renewcommand{\headrulewidth}{0pt}
 %-------------------------------------------------------------------------------------------------
 
