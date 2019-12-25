@@ -1,118 +1,160 @@
-\documentclass[11pt,twoside,space]{article}
+\documentclass[11pt,twoside]{article} % shijuan,ans
 \usepackage{CMC}
-\title{第十届全国大学生数学竞赛决赛参考答案}
+\title{第十一届中国大学生数学竞赛预赛参考答案}
 \author{14 金融工程--零蛋大}
-\date{2019年3月30日}
+\date{2019年10月27日}
 \type{非数学类}
 \examtime{150}
 \watermark{48}{11}{机密}
+%\renewenvironment{solution}{\setbox0\vbox\bgroup}{\egroup\unskip}
+\usepackage{listings}
+\input{settings_listings}
+%\lstinline[style=iltx]|命令|
 \begin{document}
-\maketitle%\vspace*{-0.8em}
-\begin{center}
-	\zihao{-4}
-	\begin{tabular}{|m{2.6em}<{\centering}|*{8}{m{3em}<{\centering}|}}
-		\hline
-		题~号 & 一 & 二 & 三   & 四 & 五 & 六  & 七  &总~~分 \\\hline
-		满~分 & 30 & 12  & 12  & 12 & 12 & 11  & 11  &\raisebox{0.4em}{100}\rule{0pt}{8mm}\\
-		\hline
-		得~分 &    &    &     &    &    &     &    &\rule{0pt}{8mm} \\
-		\hline	
-	\end{tabular}\vspace*{0.6em}		
-	$\begin{aligned}
-	\mbox{注意：}
-	&\text{本试卷共七大题, 满分100分, 考试时间为150分钟.}\\
-	&1.\,\mbox{所有答题都须写在试卷密封线右边,写在其他纸上一律无效}.\hspace{12.0cm}\\
-	&2.\,\mbox{密封线左边请勿答题,密封线外不得有姓名及相关标记}.\\
-	&3.\,\mbox{如答题空白不够,可写在当页背面,并标明题号}.\\[-2mm]
-	\end{aligned}$	
-\end{center}
+\maketitle
+\begin{flushleft}
+\zihao{-4}
+\begin{tabular}{|m{2.8em}<{\centering}|*{7}{m{(0.78\textwidth-2.8em)/7}<{\centering}|}}
+\hline
+题号 & 一 & 二 & 三   & 四 & 五 & 六  & 总~~分 \\\hline
+满分 & 30 & 14 & 14  & 14 & 14  & 14 & \raisebox{0.4em}{100}\rule{0pt}{8mm}\\
+\hline
+得分 &    &    &     &    &    &    &\rule{0pt}{8mm} \\
+\hline		
+\end{tabular}\vspace*{0.6em}		
+$\begin{aligned}
+\mbox{注意：}
+&\text{本试卷共六大题, 满分100分, 考试时间为150分钟.}\\
+&1.\,\mbox{所有答题都须写在试卷密封线右边,写在其他纸上一律无效}.\\
+&2.\,\mbox{密封线左边请勿答题,密封线外不得有姓名及相关标记}.\\
+&3.\,\mbox{如答题空白不够,可写在当页背面,并标明题号}.
+\end{aligned}$		
+\end{flushleft}
 \setlength{\marginparsep}{-0.8cm}
 %%==================================================================
 %%—————————————————————————————正文开始———————————————————————————————
-%%==================================================================	
+%%==================================================================		
 	
 
 \section{表格}
 官方的题数无规律，只能单独设置
+\begin{lstlisting}[style=tsdtex]
+\begin{tabular}{|m{2.8em}<{\centering}|*{7}{m{(0.78\textwidth-2.8em)/7}<{\centering}|}}
+\hline
+题号 & 一 & 二 & 三   & 四 & 五 & 六  & 总~~分 \\\hline
+满分 & 30 & 14 & 14  & 14 & 14  & 14 & \raisebox{0.4em}{100}\rule{0pt}{8mm}\\
+\hline
+得分 &    &    &     &    &    &    &\rule{0pt}{8mm} \\
+\hline		
+\end{tabular}
+\end{lstlisting}
 
-\section{中文字体说明}
+%\section{中文字体说明}
+%\begin{enumerate}
+%\item abobe字体
+\item 自定义：\lstinline[style=iltx]|{\zhongsong 华文中宋}| {\zhongsong 华文中宋}、\lstinline[style=iltx]|{\xingkai 华文行楷}| {\xingkai 华文行楷}
+%\end{enumerate}
 
-\begin{table}[htbp]
-\caption{中文字体说明}
-\centering
-\begin{tabular}{|cll|}
-\hline 
-\songti adobe宋体    & Adobe Song Std L     & \verb|\songti adobe宋体|    \\
-\kaishu adobe楷体    & Adobe Kaiti Std R    & \verb|\kaishu adobe楷体|    \\
-\heiti adobe黑体     & Adobe Heiti Std R    & \verb|\heiti adobe黑体|     \\
-\fangsong adobe仿宋  & Adobe Fangsong Std R & \verb|\fangsong adobe仿宋|  \\
-\zhongsong 华文中宋  & STZhongsong          & \verb|\zhongsong 华文中宋|   \\
-\xingkai 华文行楷    & STXingkai            &  \verb|\xingkai 华文行楷|    \\
-\hline	
-\end{tabular} 
-\end{table}
+%\begin{table}[htbp]
+%\caption{中文字体说明}
+%\centering
+%\begin{tabular}{|cll|}
+%\hline 
+%\songti adobe宋体    & Adobe Song Std L     & \lstinline[style=iltx]|\songti adobe宋体|    \\
+%\kaishu adobe楷体    & Adobe Kaiti Std R    & \lstinline[style=iltx]|\kaishu adobe楷体|    \\
+%\heiti adobe黑体     & Adobe Heiti Std R    & \lstinline[style=iltx]|\heiti adobe黑体|     \\
+%\fangsong adobe仿宋  & Adobe Fangsong Std R & \lstinline[style=iltx]|\fangsong adobe仿宋|  \\
+%\zhongsong 华文中宋  & STZhongsong          & \lstinline[style=iltx]|\zhongsong 华文中宋|   \\
+%\xingkai 华文行楷    & STXingkai            &  \lstinline[style=iltx]|\xingkai 华文行楷|    \\
+%\hline	
+%\end{tabular} 
+%\end{table}
 
 \section{英文字体说明}
 
-英文字体粗斜：
 \begin{enumerate}
-\item 推荐使用 \verb|$\bm{abc}$|$\bm{abc}$
-\item 不推荐 \verb|\bfit{Times New Roman Bold Italic}| \bfit{Times New Roman Bold Italic}
+\item 英文字体粗斜：
+\begin{enumerate}
+	\item 推荐 \lstinline[style=iltx]|$\bm{abc}$|$\bm{abc}$
+	\item 不推荐 \lstinline[style=iltx]|\bfit{Times New Roman Bold Italic}| \bfit{Times New Roman Bold Italic}
+\end{enumerate}
+\item 安装 mtpro2宏包
+\begin{enumerate}
+\item \href{http://www.latexstudio.net/archives/241.html}{LaTeX技巧693：安装 MathTime Professional 2 数学字体}
+\end{enumerate}
+\item 已弃 Times New Roman 风格
 \end{enumerate}
 
-引入数学字体mtpro2宏包，mtpro2宏包的安装参考 LaTeX技巧693：安装 MathTime Professional 2 数学字体\url{http://www.latexstudio.net/archives/241.html}
-
-弃Times New Roman 风格
-
-\section{解答环境}
-Proof,Solution
-\begin{enumerate}
-\item Solution 环境
-\begin{Solution}
-	9899 Solution 环境
-\end{Solution}
-\item Proof 环境
-\end{enumerate}
-
-
-\verb|\dfsxian{得分}|，\verb|\cfsxian{得分}|，\verb|\fsxian{长度(cm)}{得分}|
-
-\begin{enumerate}
-\item 短分数线示例 \verb|\dfsxian{9}|
-      \dfsxian{9}
-\item 长分数线示例 \verb|\dfsxian{10}|
-      \cfsxian{10}    
-\item 任意长度分数线示例(1cm) \verb|\fsxian{1}{10}|
-\fsxian{1}{10}
-\end{enumerate}
-
+\section{填空题}
+\lstinline[style=iltx]|\blank{填空题答案}| \blank{填空题答案} 
+\begin{lstlisting}
+%\renewenvironment{solution}{\setbox0\vbox\bgroup}{\egroup\unskip} %注释则不显示答案
+\begin{solution}
+填空题的解答环境
+\end{solution}
+\end{lstlisting}
 
 \section{大题}
-\verb|\section{大题}|， \verb|\dati{}{大题}| 二选一\par
-\dati{}{(本题15分)\;\;%\\[2mm]
-	在空间直角坐标系中，设单叶双曲面 $\Gamma$ 的方程为 $x^2+y^2-z^2=1$,设 $P$ 为空间的平面, 它交 $\Gamma$ 于一抛物线 $C$. 求该平面的法线与 $z$- 轴的夹角.\\} 
+\lstinline[style = iltx]|\section{大题}|和
+\lstinline[style=iltx]|\dati{大题}|
+\begin{lstlisting}[style=tsdtex]
+\dati{(本题15分) 在空间直角坐标系中，设单叶双曲面 $\Gamma$ 的方程为 $x^2+y^2-z^2=1$,设 $P$ 为空间的平面, 它交 $\Gamma$ 于一抛物线 $C$. 求该平面的法线与 $z$- 轴的夹角}
+\end{lstlisting}
+\dati{(本题15分) 在空间直角坐标系中，设单叶双曲面 $\Gamma$ 的方程为 $x^2+y^2-z^2=1$,设 $P$ 为空间的平面, 它交 $\Gamma$ 于一抛物线 $C$. 求该平面的法线与 $z$- 轴的夹角}\vspace{1ex}
+
+\vspace{2.5ex}
+\noindent 解答环境: Solution, Proof, proof
+%\begin{lstlisting}[style=tsdtex]
+%\begin{Solution}
+%Solution 环境
+%\end{Solution}
+%\end{lstlisting}
+\begin{Solution}
+Solution 环境
+\end{Solution}
+
+%\begin{lstlisting}[style=tsdtex]
+%\begin{proof}
+%proof 环境
+%\end{proof}
+%\end{lstlisting}
+\begin{proof}
+proof 环境
+\end{proof}
+
+%\begin{lstlisting}[style=tsdtex]
+%\begin{Proof}
+%Proof 环境
+%\end{Proof}
+%\end{lstlisting}
+\begin{Proof}
+Proof 环境
+\end{Proof}
+
+\vspace{1.5em}
+\noindent 分数线
+\begin{itemize}
+\item 推荐 \lstinline[style=iltx]|\defen[默认0cm]{得分}|、\lstinline[style=iltx]|\score[默认0cm]{得分}|
+\item 不推荐 \lstinline[style=iltx]|\dfsxian{得分}|，\lstinline[style=iltx]|\cfsxian{得分}|，\lstinline[style=iltx]|\fsxian{长度(cm)}{得分}|
+\end{itemize}
+
+
 
 \section{选择题}
-设可导函数 $f(x)$ 的原函数是 $F(x)$, 可导函数 $g(x)$ 的原函数是 $G(x)$, $g(x)$ 是 $f(x)$ 在区间 $I$ 上的反函数,  则\hfill(\qquad)\\[-1.2em]
+\begin{lstlisting}[style=tsdtex]
 \begin{tasks}(2) % 1，2，4
 \task $F'(x)G'(x)=1$
 \task $f'(x)g'\big(f(x)\big)=1$
 \task $\frac{\dif G\big(f(x)\big)}{\dif x}=-1$
 \task $\frac{\dif F\big(g(x)\big)}{\dif x}=1$	
 \end{tasks}
-
-\section{一面双页}
-
-先保存再编译，1-6 是从第一页到第六页
-\begin{verbatim*}
-\documentclass{article}
-\usepackage{pdfpages}
-\usepackage[paperwidth=40cm,paperheight=27.5cm]{geometry}
-\begin{document}
-\includepdf[pages=1-6,nup=2x1,scale=1,
-offset=3mm 0mm,column,delta=-10 -0mm]{17mathSJ.pdf}	
-\end{document}
-\end{verbatim*}
+\end{lstlisting}
+\begin{tasks}(2) % 1，2，4
+\task $F'(x)G'(x)=1$
+\task $f'(x)g'\big(f(x)\big)=1$
+\task $\frac{\dif G\big(f(x)\big)}{\dif x}=-1$
+\task $\frac{\dif F\big(g(x)\big)}{\dif x}=1$	
+\end{tasks}
 
 
 
@@ -121,3 +163,15 @@ offset=3mm 0mm,column,delta=-10 -0mm]{17mathSJ.pdf}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
 \end{document}
+\section{一面双页}
+
+先保存再编译，1-6 是从第一页到第六页
+\begin{verbatim}
+\documentclass{article}
+\usepackage{pdfpages}
+\usepackage[paperwidth=40cm,paperheight=27.5cm]{geometry}
+\begin{document}
+\includepdf[pages=1-6,nup=2x1,scale=1,
+offset=3mm 0mm,column,delta=-10 -0mm]{17mathSJ.pdf}	
+\end{document}
+\end{verbatim}
