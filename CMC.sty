@@ -1,16 +1,36 @@
-%by 14级天大仁爱管理系金工唐绍东
-%QQ 1096084877
+%%%%%%%%%%%%%%%%%%%%%%
+%% This is file `CMC.sty'.
+%% Copyright 2018-2020 shaodongtang (shaodongtang@gmail.com)
+%%
+%% This work may be distributed and/or modified freely
+%% available at https://github.com/shaodongtang/CMC
+%% by 14级天大仁爱管理系金工唐绍东
+%% QQ 1096084877
+%% CMC.sty放入\texlive\texmf-local\tex\latex\local 然后 texhash
+%%%%%%%%%%%%%%%%%%%%%
+% % !Mode:: "TeX:UTF-8"
 % cmc.sty放入\texlive\texmf-local\tex\latex\local 然后 texhash
-\ProvidesPackage{CMC}[2019/12/25 v1.22 Non-standard LaTeX package]
-%\documentclass[11pt,twoside]{article} % shijuan
-%\usepackage{CMC}  % .sty 向总定制
+\ProvidesPackage{CMC}[2020/03/25 v1.23 Non-standard LaTeX package]
+%\documentclass[11pt,twoside]{article} % math=mtpro2、result=noanswer
+%\usepackage{CMC}
+\RequirePackage{kvoptions}
+\RequirePackage{etoolbox}
+\SetupKeyvalOptions{family=CMC, prefix=CMC@, setkeys=\kvsetkeys}
+\newcommand{\ekv}[1]{\kvsetkeys{CMC}{#1}}
+%------------ 设置默认参数 ----------------
+\DeclareStringOption[cm]{math}
+\DeclareStringOption[answer]{result}
+%---------------------------------------
 
+\DeclareVoidOption{mtpro2}{\ekv{math=mtpro2}}
+\DeclareVoidOption{cm}{\ekv{math=cm}}
 
-\RequirePackage[mtphrb]{mtpro2}
-\RequirePackage{bm} %加粗
+\DeclareVoidOption{answer}{\ekv{result=answer}}
+\DeclareVoidOption{noanswer}{\ekv{result=noanswer}}
+
+\ProcessKeyvalOptions*\relax
 
 \RequirePackage[UTF8,heading]{ctex} % fontset=adobe(商业字体)
-
 
 %------------------------------- 大题 ----------------------------------%
 \ctexset{section = {name = {,、\hspace*{-5mm}},number = \chinese{section},format = {\zihao{5}\raggedright}}}
@@ -39,28 +59,6 @@
 %===============================大题\dati{题目}================================
 
 
-%------------------------------ 选择题 ----------------------------------%
-\RequirePackage{tasks}%选择题宏包，tasks环境
-\settasks{
-	label={\Alph*.},
-	label-align = left,
-	label-offset = {1em},
-	label-width = 0.5em,
-	item-indent = {1.5em}, % indent = label-width + label-offset
-	column-sep = {1em},
-	before-skip = {-1em},
-	after-skip = {-1em},
-    after-item-skip = 0em}
-% 选择题示例 
-%\begin{tasks}(4)
-%	\task 
-%	\task 
-%	\task 
-%	\task 
-%\end{tasks}
-%------------------------------ 选择题 ----------------------------------%
-
-
 
 %%%--------------------------数学类---------------------------%%%
 %=======================================================================
@@ -74,44 +72,57 @@
 \let\ge=\geqslant
 \let\geq=\geqslant
 \RequirePackage{extarrows} %长等号
-%\RequirePackage[fourier]{varint} %李清的可以修改积分符号的宏包
-% mathabx
-%\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
-%\DeclareFontShape{U}{mathx}{m}{n}{<->mathx10}{}
-%\DeclareFontSubstitution{U}{mathx}{m}{n}
-%\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
-%\DeclareMathSymbol{\intop}  {\mathop}{mathx}{"B3}
-%\DeclareMathSymbol{\iintop} {\mathop}{mathx}{"B4}
-%\DeclareMathSymbol{\iiintop}{\mathop}{mathx}{"B5}
-%\DeclareMathSymbol{\ointop} {\mathop}{mathx}{"B6}
-%\DeclareMathSymbol{\oiintop}{\mathop}{mathx}{"B7}
-
-%\RequirePackage{amssymb}
-%\RequirePackage{unicode-math}
-%\setmainfont{XITS}
-%\setmathfont{XITS Math}
-%%\setmathfont[range={\sum,\int,\iint,\iiint,\oint,\oiint}]{TeX Gyre Pagella Math}
-%%\setmathfont[range={\int,\iint,\iiint,\oint,oiint}]{Libertinus Math} %直立积分的符号，缺\oiint
-%\setmathfont[range={\int,\iint,\iiint,\oint,\oiint}]{Cambria Math.ttf} % Cambria Math  % win10
-%%\setmathfont[Path=Fonts/,range={\int,\iint,\iiint,\oint,\oiint}]{Cambria Math.ttf} %Cambria Math  % overleaf 
-%\setmathfont[range={\sum}]{Latin Modern Math} %\int,\iint,\oint
-%\setmathfontface\bm{XITS-BoldItalic} % \bm{英文}粗斜体
-
 \RequirePackage{mathrsfs}
 \RequirePackage{scalerel} %\scaleobj{1.5}{} 缩放公式大小
+% ----- Math option -----cm、mtpro2
+\ifdefstring{\CMC@math}{mtpro2}{
+	\let\Bbbk\relax
+	\RequirePackage{mtpro2}
+}{\relax}
+\ifdefstring{\CMC@math}{cm}{
+\RequirePackage{amssymb}
+\RequirePackage{unicode-math}
+\setmainfont{XITS}
+\setmathfont{XITS Math}
+%\setmathfont[range={\sum,\int,\iint,\iiint,\oint,\oiint}]{TeX Gyre Pagella Math}
+%\setmathfont[range={\int,\iint,\iiint,\oint,oiint}]{Libertinus Math} %直立积分的符号，缺\oiint
+\setmathfont[range={\int,\iint,\iiint,\oint,\oiint}]{Cambria Math} % Cambria Math  % win10
+%\setmathfont[Path=Fonts/,range={\int,\iint,\iiint,\oint,\oiint}]{Cambria Math.ttf} %Cambria Math  % overleaf 
+\setmathfont[range={\sum}]{Latin Modern Math} %\int,\iint,\oint
+\setmathfontface\bm{XITS-BoldItalic} % \bm{英文}粗斜体
+}{\relax}
+% ----- Math option -----math=cm、math=mtpro2
 
-
-%%---------------------------------- Proof\proof\Solution\solution环境设置 ------------------------------------%%
-\RequirePackage{amsthm}
-\renewcommand{\proofname}{\textbf{证明}}
+% ----- result option -----answer、noanswer
+%%----------- \blank{填空题答案} --------------%%
+\RequirePackage{xcolor}
+% \usepackage{comment}
+\ifdefstring{\CMC@result}{answer}{
+\newcommand{\blankcolor}[1]{{\color{black}#1}}	
+}{\relax}
+\ifdefstring{\CMC@result}{noanswer}{
+\newcommand{\blankcolor}[1]{{\color{white}#1}}	
+}{\relax}
+\newcommand{\blank}[1]{\underline{\,\blankcolor{#1}\,}}
+%%----------- Proof\proof\Solution\solution环境 --------------%%
+\let\qedhere\relax
+\ifdefstring{\CMC@result}{answer}{
+\newenvironment{proof}{\par\noindent{\textbf{证明.\,}}\small}{\hspace*{\fill}$\Box$\quad\par} %大题证明环境
 \newenvironment{Proof}{\par\noindent{\textbf{证明.\,}}\small}{\hspace*{\fill}$\Box$\quad\par} %大题证明环境
 \newenvironment{Solution}{\par\noindent{\textbf{解.\,}}}{\hspace*{\fill}{$\Diamond$}\par} % 大题解答环境
-\newenvironment{solution}{\par\noindent{\textbf{解.\,}}}{\hspace*{\fill}{$\Diamond$}\par}  % 填空题解答环境
+\newenvironment{solution}{\par\noindent{\textbf{解.\,}}}{\hspace*{\fill}{$\Diamond$}\par} % 填空题解答环境
+}{\relax}
+\ifdefstring{\CMC@result}{noanswer}{
+\newenvironment{Proof}{\setbox0\vbox\bgroup}{\egroup\unskip}
+\newenvironment{proof}{\setbox0\vbox\bgroup}{\egroup\unskip}
+\newenvironment{solution}{\setbox0\vbox\bgroup}{\egroup\unskip}
+\newenvironment{Solution}{\setbox0\vbox\bgroup}{\egroup\unskip}
+}{\relax}
+% ----- result option -----result=answer、result=noanswer
 
 
 
-
-%-----------------------------------------------字体设置-----------------------------------------------------%
+%-------------------------字体设置--------------------------------------%
 
 %%--------------------------嫌弃新罗马字体---------------------------------
 \newfontfamily\TNRBI{Times New Roman Bold Italic} %新罗马字体英文的粗斜体
@@ -120,42 +131,16 @@
 
 
 %==========================中文字体设置=============================%
-%-----------------------电脑Windows---------------------------% 
-%\renewcommand{\songti}{\CJKfontspec{Adobe Song Std R}}% adobe 宋体
-%\renewcommand{\heiti}{\CJKfontspec{Adobe Heiti Std R}}%adobe 黑体
-%\renewcommand{\fangsong}{\CJKfontspec{Adobe Fangsong Std R}}%adobe 仿宋
-%\renewcommand{\kaishu}{\CJKfontspec{Adobe Kaiti Std R}}%adobe 楷体
-%\def\xingkai{\CJKfontspec{STXingkai}}%华文行楷
-%\def\zhongsong{\CJKfontspec{STZhongsong}} %华文中宋
-%\newfontfamily\xingkai{STXingkai}
-%\newfontfamily\zhongsong{STZhongsong}
-%---------------------------overleaf----------------------------%
-% 第一种方式：overleaf中新建 Fonts文件夹 adobe系列
-%\RequirePackage{amssymb}
-%\RequirePackage[UTF8,heading]{ctex} %fontset=adobe
-%\setCJKmainfont[Path=Fonts/,
-%                Extension = .otf,
-%                BoldFont=AdobeHeitiStd-Regular,
-%                ItalicFont=AdobeKaitiStd-Regular]{AdobeSongStd-Light}
-%\setCJKsansfont[Path=Fonts/]{AdobeHeitiStd-Regular}%serif是有衬线字体sans serif无衬线字体。
-%\setmonofont[Path=Fonts/]{AdobeSongStd-Light.otf} % 等寬字型
-%\renewcommand{\songti}{\CJKfontspec[Path=Fonts/]{AdobeSongStd-Light.otf}}% adobe 宋体
-%\renewcommand{\heiti}{\CJKfontspec[Path=Fonts/]{AdobeHeitiStd-Regular.otf}}% adobe 黑体
-%\renewcommand{\fangsong}{\CJKfontspec[Path=Fonts/]{AdobeFangsongStd-Regular.otf}}%adobe 仿宋
-%\renewcommand{\kaishu}{\CJKfontspec[Path=Fonts/]{AdobeKaitiStd-Regular.otf}}%adobe 楷体 
-%\def\xingkai{\CJKfontspec[Path=Fonts/]{STXingkai.ttf}}%华文行楷
-%\def\zhongsong{\CJKfontspec[Path=Fonts/]{STZhongsong.ttf}} %华文中宋
-%\newfontfamily\xingkai[Path=Fonts/]{STXingkai.ttf} % 华文行楷
-%\newfontfamily\zhongsong[Path=Fonts/]{STZhongsong.ttf} % 华文中宋
-% 第二种方式：思源字体
+% 思源字体v1
 \setCJKmainfont[BoldFont={Noto Serif CJK SC Bold},
                 ItalicFont={FandolKai}]{Noto Serif CJK SC ExtraLight}
 \setCJKsansfont[BoldFont={Noto Sans S Chinese Medium}]{Noto Sans S Chinese DemiLight}
 \renewcommand{\songti}{\CJKfontspec{Noto Serif CJK SC}} % 思源宋体
 \renewcommand{\heiti}{\CJKfontspec{Noto Sans CJK SC}} % 思源黑体
 \newcommand{\cusong}{\CJKfontspec{Noto Serif CJK SC Bold}} % 思源宋体
+%\def\xingkai{\CJKfontspec{STXingkai}}%华文行楷
+%\def\zhongsong{\CJKfontspec{STZhongsong}} %华文中宋
 %=========================中文字体设置===========================%
-
 
 
 %------------------------------------------页眉页脚-%-装订线----------------------------------------%
@@ -204,13 +189,13 @@
 %%--------------- 页面设置 ---------------%%
 \RequirePackage{geometry}
 \geometry{paperwidth=21.587cm,paperheight=27cm,top=2cm,bottom=2cm} %
-  \oddsidemargin=0.5cm   %奇数页页边距
-  \evensidemargin=0.5cm %偶数页页边距
+\oddsidemargin=0.5cm   %奇数页页边距
+\evensidemargin=0.5cm %偶数页页边距
 \setlength{\marginparsep}{-0.8cm}
 
 
 
-%%---------------------------------------------添加水印：机密-----------------------------------------------------------%%
+%%--------------------------添加水印：机密----------------------------------------%%
 \RequirePackage{graphicx} %插图
 \RequirePackage{wrapfig}
 \RequirePackage{eso-pic}
@@ -224,28 +209,11 @@
 \vfill}}}
 %\watermark{48}{11}{机密}  % 水印--第六届数学类
 %\watermark{60}{6}{14-金融工程-白兔兔}
-%%---------------------------------------------添加水印：机密----------------------------------------------------------%%
+%%-----------------------------添加水印：机密---------------------------------------%%
 
 
-%%---------------------------------------------表格-----------------------------------------------------------%%
-\usepackage{tabularx}
+\usepackage{tabularx} % 表格 tabularx环境
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
-
-%=======================================================================
-\RequirePackage{xcolor}%-颜色-%
-%==============================================================================
-% \RequirePackage{xcolor}
-% \usepackage{comment}
-\newcommand{\blankcolor}[1]{\color{black}#1}
-\DeclareOption{ans}{\providecommand{\blankcolor}[1]{{\color{black}#1}}}
-\DeclareOption{shijuan}{\renewcommand{\blankcolor}[1]{{\color{white}#1}}
-                                                 \renewenvironment{solution}{\setbox0\vbox\bgroup}{\egroup\unskip}
-                                                \renewenvironment{Solution}{\setbox0\vbox\bgroup}{\egroup\unskip}
-                                                \renewenvironment{Proof}{\setbox0\vbox\bgroup}{\egroup\unskip}
-                                                \renewenvironment{proof}{\setbox0\vbox\bgroup}{\egroup\unskip} }
-\ProcessOptions
-\newcommand{\blank}[1]{\underline{\,\blankcolor{#1}\,}}
-% ==================== \blank{答案} %2019/4/2 ==================== %
 
 \RequirePackage{enumitem}
 
@@ -260,5 +228,25 @@
 \multicolumn{3}{c}{\zihao{4}考试形式：\underline{~闭卷~}\hspace{2mm}考试时间：\underline{~~\@examtime~~}分钟~\hspace{2mm}满分：\underline{~~100~~}分}		
 \end{tabularx}}}
 
+%------------------------------ 选择题 ----------------------------------%
+\RequirePackage{tasks}%选择题宏包，tasks环境
+\settasks{
+	label={\Alph*.},
+	label-align = left,
+	label-offset = {1em},
+	label-width = 0.5em,
+	item-indent = {1.5em}, % indent = label-width + label-offset
+	column-sep = {1em},
+	before-skip = {-1em},
+	after-skip = {-1em},
+    after-item-skip = 0em}
+% 选择题示例 
+%\begin{tasks}(4)
+%	\task 
+%	\task 
+%	\task 
+%	\task 
+%\end{tasks}
+%------------------------------ 选择题 ----------------------------------%
 
 \endinput
