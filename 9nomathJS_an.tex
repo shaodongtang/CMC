@@ -1,0 +1,221 @@
+\documentclass[11pt,twoside]{article} %
+\usepackage{CMC}
+\title{第九届中国大学生数学竞赛决赛试卷}
+\author{14 金融工程--零蛋大}
+\date{2018年3月24日}
+\type{非数学类}
+\examtime{150}
+\usepackage{halloweenmath}%猫和老鼠
+\renewcommand{\qedsymbol}{$\textstyle\color{cyan}\reversemathwitch*$} 
+\watermark{48}{11}{机密}
+%\renewenvironment{solution}{\setbox0\vbox\bgroup}{\egroup\unskip}
+%\usepackage{scalerel} %\scaleobj{1.5}{} 缩放公式大小
+\begin{document}
+\maketitle
+\begin{flushleft}
+{\zihao{-4}
+\begin{tabular}{|m{3em}<{\centering}|*{7}{m{3.5em}<{\centering}|}}\hline	
+	题~号 & 一 & 二 & 三  & 四 & 五 & 六  &总~~分 \\\hline
+	满~分 & 15 & 15 & 15  & 20 & 15 & 20  &\raisebox{0.4em}{100}\rule{0pt}{8mm}\\\hline
+	得~分 &    &    &      &    &    &     &    \rule{0pt}{8mm} \\\hline
+\end{tabular}\vspace*{0.6em}		
+$\begin{aligned}
+\mbox{注意：}
+&1.\,\mbox{所有答题都须写在试卷密封线右边,写在其他纸上一律无效}.\hspace{12.0cm}\\
+&2.\,\mbox{密封线左边请勿答题,密封线外不得有姓名及相关标记}.\\
+&3.\,\mbox{如答题空白不够,可写在当页背面,并标明题号}.\\[-2mm]
+\end{aligned}$}					
+\end{flushleft}
+%%==================================================================
+%%—————————————————————————————正文开始———————————————————————————————
+%%==================================================================
+
+%%---------------------------第一题------------------------------%%
+\vspace*{1em}\par
+一、(本题满分30分, 每小题6分)\;
+\begin{enumerate}[label={(\arabic*)},labelsep=-0.6em,leftmargin=3.4em,align=left]
+\item 极限 $\lim_{x\to0}\frac{\tan x-\sin x}{x\ln(1+\sin^2x)}=\blank{\frac{1}{2}}$
+
+\item 设一平面过原点和点 $(6,-3,2)$ 且与平面 $4x-y+2z=8$ 垂直, 则此平面方程为\blank{$2x+2y-3z=0$}
+
+\item 设函数 $f(x,y)$ 具有一阶连续偏导数, 满足 $\dif f(x,y)=ye^y\dif x+x(1+y)e^y\dif y$, 及 $f(0,0)=0$, 则 $f(x,y)=\blank{xye^y}$
+
+\item 满足 $\frac{\dif u(t)}{\dif t}=u(t)+\int_0^1u(t)\dif t$ 及 $u(0)=1$ 的可微函数 $u(t)=\blank{\frac{2e^t-e+1}{3-e}}$
+
+\item 设 $a,b,c,d$ 是互不相同的正实数, $x,y,z,w$ 是实数, 满足 $a^x=bcd$,\,$b^y=cda$,\,$c^z=dab$, 
+$d^w=abc$, 则行列式$\begin{vmatrix}
+-x&1&1&1\\1&-y&1&1\\1&1&-z&1\\1&1&1&-w
+\end{vmatrix}=\blank{0}$
+\end{enumerate}
+
+
+\newpage
+%%---------------------------第二题------------------------------%%
+%\noindent
+二、\;\;(本题满分11分)\;
+设函数 $f(x)$ 在区间 $(0,1)$ 内连续, 且存在两两互异的点 $x_1.x_2,x_3,x_4\in(0,1)$, 使得
+\[\alpha=\frac{f(x_1)-f(x_2)}{x_1-x_2}<\frac{f(x_3)-f(x_4)}{x_3-x_4}=\beta\,,\]
+证明：对任意 $\lambda\in(\alpha,\beta)$, 存在互异的点 $x_5.x_6\in(0,1)$, 使得 $\lambda=\frac{f(x_5)-f(x_6)}{x_5-x_6}$
+\begin{proof} 
+不妨设 $x_1<x_2,x_3<x_4$, 考虑辅助函数
+\[F(t)=\frac{f((1-t)x_2+tx_4)-f((1-t)x_1+tx_3)}{(1-t)(x_2-x_1)+t(x_4-x_3)}\,,\]
+\defen{4}
+则 $F(t)$ 在闭区间 $[0,1]$ 上连续, 且 $F(0)=\alpha<\lambda<\beta=F(1)$. 根据连续函数介值定理,\\
+存在 $t_0\in(0,1)$, 使得 $F(t_0)=\lambda$
+\cfsxian{3}
+令 $x_5=(1-t_0)x_1+t_0x_3,x_6=(1-t_0)x_2+t_0x_4$, 则 $x_5,x_6\in(0,1),x_5<x_6$, 且
+\[\lambda=F(t_0)=\frac{f(x_5)-f(x_6)}{x_5-x_6}\]
+\defen{4}
+\qedhere\end{proof}
+
+
+%\newpage
+%%---------------------------第三题------------------------------%%
+%\noindent
+三、(本题满分11分)\;
+设函数 $f(x)$ 在区间 $[0,1]$ 上连续且 $\int_0^1f(x)\dif x\neq0$, 证明: 在区间 $[0,1]$ 上存在三个不同点 $x_1,x_2,x_3$ 使得
+\begin{align*}
+\frac{\pi}{8}\int_0^1f(x)\dif x&=\left[\frac{1}{1+x_1^2}\int_0^{x_1}f(t)\dif t+f(x_1)\arctan x_1\right]\\
+&=\left[\frac{1}{1+x_2^2}\int_0^{x_2}f(t)\dif t+f(x_2)\arctan x_2\right](1-x_3)
+\end{align*}
+\begin{proof}
+令 $F(x)=\frac{4}{\pi}\frac{\arctan x\scaleobj{0.8}{\displaystyle\int_0^x}f(t)\dif t}{\scaleobj{0.8}{\displaystyle\int_0^1}f(t)\dif t}$, 则 $F(0)=0$, $F(1)=1$ 且函数 $F(x)$ 在闭区间 $[0,1]$ 上可导, 根据介值定理, 存在点 $x_3\in(0,1)$, 使 $F(x_3)=\frac{1}{2}$
+\defen{5}
+再分别在区间 $[0,x_3]$ 与 $[x_3,1]$ 上利用拉格朗日中值定理, 存在 $x_1\in(0,x_3)$, 使得 $F(x_3)-F(0)=F'(x_1)(x_3-0)$, 即
+\[\frac{\pi}{8}\int_0^1f(x)\dif x=\left[\frac{1}{1+x_1^2}\int_0^{x_1}f(t)\dif t+f(x_1)\arctan x_1\right]x_3\]
+\defen{3}
+且存在 $x_2\in(x_3,1)$, 使得 $F(1)-F(x_3)=F'(x_2)(1-x_3)$, 即
+\[\frac{\pi}{8}\int_0^1f(x)\dif x=\left[\frac{1}{1+x_2^2}\int_0^{x_2}f(t)\dif t+f(x_2)\arctan x_2\right](1-x_3)\]
+\defen{3}
+\qedhere\end{proof}
+
+
+%\newpage
+%%---------------------------第四题------------------------------%%
+%\noindent
+四、(本题满分12分)\;
+求极限: $\lim_{n\to\infty}\Big[\sqrt[n+1]{(n+1)!}-\sqrt[n]{n!}\Big]$.\\
+\begin{Solution}
+注意到 $\sqrt[n+1]{(n+1)!}-\sqrt[n]{n!}=n\left[\frac{\sqrt[n+1]{(n+1)!}}{\sqrt[n]{n!}}-1\right]\cdot\frac{\sqrt[n]{n!}}{n}$, 而
+\defen{3}
+\[\lim_{n\to\infty}\frac{\sqrt[n]{n!}}{n}=e^{\lim\limits_{n\to\infty}\frac{1}{n}\sum\limits_{k=1}^{n}\ln\frac{k}{n}}=e^{\int_0^1\ln x\dif x}=\frac{1}{e},\]
+\defen{3}
+\[\frac{\sqrt[n+1]{(n+1)!}}{\sqrt[n]{n!}}=\sqrt[(n+1)n]{\frac{[(n+1)!]^n}{(n!)^{n+1}}}=\sqrt[(n+1)n]{\frac{(n+1)^{n+1}}{(n+1)!}}=e^{-\frac{1}{n}\frac{1}{n+1}\sum\limits_{k=1}^{n+1}\ln\frac{k}{n+1}},\]
+\defen{3}
+利用等价无穷小替换 $e^x-1\sim x\;(x\to0)$, 得
+\[\lim_{n\to\infty}n\left[\frac{\sqrt[n+1]{(n+1)!}}{\sqrt[n]{n!}}-1\right]=-\lim_{n\to\infty}\frac{1}{n+1}\sum\limits_{k=1}^{n+1}\ln\frac{k}{n+1}=-\int_0^1\ln x\dif x=1,\]
+因此, 所求极限为
+\[\lim_{n\to\infty}\Big[\sqrt[n+1]{(n+1)!}-\sqrt[n]{n!}\Big]=\lim_{n\to\infty}\frac{\sqrt[n]{n!}}{n}\cdot\lim_{n\to\infty}n\left[\frac{\sqrt[n+1]{(n+1)!}}{\sqrt[n]{n!}}-1\right]=\frac{1}{e}\]
+\defen{3}
+\end{Solution}
+
+
+\newpage
+%%---------------------------第五题------------------------------%%
+%\noindent
+五、(本题满分12分)\;
+设 $x=(x_1,x_2,\cdots,x_n)^{\intercal}\in\mathbb{R}^n$, 定义 $H_n=\textstyle\sum\limits_{i=1}^{n}x_i^2-\sum\limits_{i=1}^{n-1}x_ix_{i+1},\,n\geqslant2$.\newline
+(1) 证明: 对任意非零 $x\in\mathbb{R}^n,\,H(x)>0$;\\
+(2) 求 $H(x)$ 满足条件 $x_n=1$ 的最小值.
+\begin{proof} 
+(1) 二次型 $H_n=\textstyle\sum\limits_{i=1}^{n}x_i^2-\sum\limits_{i=1}^{n-1}x_ix_{i+1}$  的矩阵为
+\[A=\begin{pmatrix}
+1     &-\tfrac{1}{2}&            &            &            &\\
+-\tfrac{1}{2}&      1     &-\tfrac{1}{2}&            &            &\\
+&-\tfrac{1}{2}&   \ddots   &  \ddots    &            &\\
+&            &   \ddots   &     1      &-\tfrac{1}{2}&\\
+&            &            &-\tfrac{1}{2}&     1      &
+\end{pmatrix}\tag{3分}\]
+%,\tikz[remember picture,inner sep=0pt,outer sep=0pt] \node[anchor=base] (n2) {\phantom{x}};
+%\tikz[remember picture,overlay]\draw[black,line width=1pt,dash pattern=on 1pt off 2pt on 1pt off 2pt] (n2) -- (0.2425\textwidth,0.116) node[right=-1mm] {(3分)};
+因为 $A$ 实对称, 其任意 $k$ 阶顺序主子式 $\Delta_k>0$, 所以 $A$ 正定, 故结论成立.
+\defen{3}
+(2) 对 $A$ 作分块如下 $A=\begin{pmatrix}
+A_{n-1} &\alpha\\ \alpha^{\intercal}&1
+\end{pmatrix}$, 其中 $\alpha=\Big(0,\cdots,0,-\frac{1}{2}\Big)^{\mathsf{T}}\in\mathbb{R}^{n-1}$, 取可逆矩阵\\
+$P=\begin{pmatrix}
+I_{n-1}&-A_{n-1}^{-1}\alpha\\0&1
+\end{pmatrix}$, 则 $P^{\mathsf{T}}AP=\begin{pmatrix}
+A_{n-1} &0\\0&1-\alpha^{\intercal}A_{n-1}^{-1}\alpha
+\end{pmatrix}=\begin{pmatrix}
+A_{n-1} &0\\ 0&a
+\end{pmatrix}$, 其中 $a=1-\alpha^{\intercal}A_{n-1}^{-1}\alpha$
+\defen{3}
+记 $x=P(x_0,1)^{\mathsf{T}}$, 其中 $x_0=(x_1,x_2,\cdots,x_{n-1})^{\mathsf{T}}\in\mathbb{R}^{n-1}$, 因为
+\[H(x)=x^{\intercal}Ax=(x_0^{\intercal},1)P^{\mathsf{T}}(P^{\mathsf{T}})^{-1}\begin{pmatrix}
+A_{n-1} &0\\ 0&a
+\end{pmatrix}P^{-1}P\begin{pmatrix}
+x_0\\1
+\end{pmatrix}=x_0^\intercal A_{n-1}x_0+a,\]
+且 $A_{n-1}$ 正定, 所以 $H(x)=x_0^\intercal A_{n-1}x_0+a\geqslant a$, 当 $x=P(x_0,1)^{\mathsf{T}}=P(0,1)^{\mathsf{T}}$ 时, $H(x)=a$. \\
+因此, $H(x)$ 满足条件 $x_n=1$ 的最小值为 $a$. 
+\defen{3}
+\qedhere\end{proof}
+
+
+\newpage
+%%---------------------------第六题------------------------------%%
+%\noindent
+六、(本题满分12分)\;
+设函数 $f(x,y)$ 在区域 $D=\big\{(x,y)\big|x^2+y^2\leqslant a^2\big\}$ 上具有一阶连续偏导数, 且满足 $f(x,y)\Big|_{x^2+y^2=a^2}=a^2$, 以及 $\max_{(x,y)\in D}\left[\bigg(\frac{\partial f}{\partial x}\bigg)^2+\bigg(\frac{\partial f}{\partial y}\bigg)^2\right]=a^2$, 其中 $a>0$, 证明: 
+\[\bigg|\iint\limits_Df(x,y)\dif x\dif y\bigg|\leqslant\frac{4}{3}\pi a^4\]
+\begin{Solution}
+在格林公式\[\oint\limits_CP(x,y)\dif x+Q(x,y)\dif y=\iint\limits_D\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)\dif x\dif y \]
+中, 依次取 $P=yf(x,y)$, $Q=0$ 和取 $P=0$, $Q=xf(x,y)$, 分别可得
+\[\iint\limits_Df(x,y)\dif x\dif y=-\oint\limits_Cyf(x,y)\dif x-\iint\limits_Dy\frac{\partial f}{\partial y}\dif x\dif y,\]
+\[\iint\limits_Df(x,y)\dif x\dif y=\oint\limits_Cxf(x,y)\dif y-\iint\limits_Dx\frac{\partial f}{\partial x}\dif x\dif y,\]
+两式相加, 得
+\[\iint\limits_Df(x,y)\dif x\dif y=\frac{a^2}{2}\oint\limits_C-y\dif x+x\dif y-\frac{1}{2}\iint\limits_D\left(x\frac{\partial f}{\partial x}+y\frac{\partial f}{\partial y}\right)\dif x\dif y=I_1+I_2\]
+\defen{4}
+对 $I_1$ 再次利用格林公式, 得 $I_1=\frac{a^2}{2}\oint\limits_C-y\dif x+x\dif y=a^2\iint\limits_D\dif x\dif y=\pi a^4,$
+\defen{2}{2}
+对 $I_2$ 的被积函数利用柯西不等式, 得
+\begin{align*}
+|I_2|&\leqslant\frac{1}{2}\iint\limits_D\left|x\frac{\partial f}{\partial x}+y\frac{\partial f}{\partial y}\right|\dif x\dif y\leqslant\frac{1}{2}\iint\limits_D\sqrt{x^2+y^2}\sqrt{\bigg(\frac{\partial f}{\partial x}\bigg)^2+\bigg(\frac{\partial f}{\partial y}\bigg)^2}\dif x\dif y\\
+&\leqslant\frac{a}{2}\iint\limits_D\sqrt{x^2+y^2}\dif x\dif y=\frac{1}{3}\pi a^4
+\end{align*}
+\defen{4}
+因此,有
+\[\bigg|\iint\limits_Df(x,y)\dif x\dif y\bigg|\leqslant\pi a^4+\frac{1}{3}\pi a^4=\frac{4}{3}\pi a^4\]
+\defen{2}
+\end{Solution}
+
+
+\newpage
+%%---------------------------第七题------------------------------%%
+%\noindent
+七、(本题满分12分)\;
+设 $0<a_n<1$, $n=1,2,\cdots$, 且 $\lim_{n\to\infty}\frac{\ln\frac{1}{a_n}}{\ln n}=q$ (有限或 $+\infty$).\newline
+(1) 证明: 当 $q>1$ 时, 级数 $\sum\limits_{n=1}^{\infty}a_n$ 收敛, 当   时级数 $\sum\limits_{n=1}^{\infty}a_n$ 发散.\\
+(2) 讨论 $q=1$ 时级数 $\sum\limits_{n=1}^{\infty}a_n$ 的敛散性并阐述理由
+\begin{proof}
+(1) 若 $q>1$, 则 $\exists p\in\mathbb{R}$, s.t. $q>p>1$. 根据极限性质, $\exists N\in\mathbb{Z}^+$, s.t. $\forall n>\mathbb{N}$, 有 $\frac{\ln\frac{1}{a_n}}{\ln n}>p$,\\
+即 $a_n<\frac{1}{n^p}$, 而 $p>1$ 时 $\sum\limits_{n=1}^{\infty}\frac{1}{n^p}$ 收敛, 所以 $\sum\limits_{n=1}^{\infty}a_n$ 收敛
+\defen{3}
+若 $q<1$, 则 $\exists p\in\mathbb{R}$, s.t. $q<p<1$. 根据极限性质, $\exists N\in\mathbb{Z}^+$, s.t. $\forall n>\mathbb{N}$, 有 $\frac{\ln\frac{1}{a_n}}{\ln n}<p$,\\
+即 $a_n>\frac{1}{n^p}$, 而 $p<1$ 时 $\sum\limits_{n=1}^{\infty}\frac{1}{n^p}$ 发散, 所以 $\sum\limits_{n=1}^{\infty}a_n$ 发散
+\defen{2}{3}
+(2) 当 $q=1$ 时，级数 $\sum\limits_{n=1}^{\infty}a_n$ 可能收敛, 也可能发散.\\
+例如: $a_n=\frac{1}{n}$ 满足条件, 但级数 $\sum\limits_{n=1}^{\infty}a_n$ 发散;
+\defen{3}
+又如: $a_n=\frac{1}{n\ln^2n}$ 满足条件, 但级数 $\sum\limits_{n=1}^{\infty}a_n$ 收敛.
+\defen{3}
+\end{proof}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\noindent\tikz\draw[blue,line width=1pt,dash pattern=on 1pt off 2pt on 1pt off 2pt] (0pt,0pt)--(\textwidth,0pt);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\clearpage
+\end{document}
+
+
+
+%  合并为一面双页
+%  先保存再编译
+\documentclass{article}
+\usepackage{pdfpages}
+\usepackage[paperwidth=40cm,paperheight=27.5cm]{geometry}
+\begin{document}
+	\includepdf[pages=1-6,nup=2x1,scale=1,offset=3mm 0mm,column,delta=-10 -0mm]{17nomathdaan.pdf}	
+\end{document}
