@@ -25,7 +25,7 @@
 
 #### 最新版本的修改说明
 
-1. 加入shijuan（试卷），ans（答案）可选参数；
+1. 加入result=noanswer（试卷），result=answer（答案）可选参数；
 2. 装订线命令修改（0cm为默认，\defen{得分}）\defen[2cm]{得分}、\score[2cm]{得分}；
 3. 大题命令修改为\dati{题目}
 
