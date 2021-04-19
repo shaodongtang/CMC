@@ -1,12 +1,11 @@
-\documentclass[11pt,twoside]{article} 
-\usepackage[mtpro2]{CMC}
-\usepackage{bm}
+\documentclass[11pt,twoside]{article} % 可选参数 shijuan, mtpro2
+\usepackage{CMC}
 \title{第十一届中国大学生数学竞赛预赛参考答案}
 \author{14 金融工程--零蛋大}
 \date{2019年10月27日}
 \type{非数学类}
 \examtime{150}
-%\watermark{48}{11}{机密}
+\watermark{48}{11}{机密}
 %\renewenvironment{solution}{\setbox0\vbox\bgroup}{\egroup\unskip}
 \usepackage{listings}
 \input{settings_listings}
@@ -35,13 +34,10 @@ $\begin{aligned}
 %%==================================================================
 %%—————————————————————————————正文开始———————————————————————————————
 %%==================================================================		
+	
 
-模板基于TeX Live 2020
-
-\[\int_0^x f(x) \dif x\]
-
-\section{表格}
-官方的题数无规律，只能单独设置
+\section{首页的计分表格}
+官方的题数无规律，只能单独设置, 作为示例
 \begin{lstlisting}[style=tsdtex]
 \begin{tabular}{|m{2.8em}<{\centering}|*{7}{m{(0.78\textwidth-2.8em)/7}<{\centering}|}}
 \hline
@@ -53,90 +49,66 @@ $\begin{aligned}
 \end{tabular}
 \end{lstlisting}
 
-\begin{lstlisting}[style=tsdtex]
-\begin{tabular}{|m{2.8em}<{\centering}|*{8}{m{(0.78\textwidth-2.8em)/8}<{\centering}|}}
-\hline
-题号 & 一 & 二 & 三  & 四 & 五 & 六 & 七 & 总~分 \\\hline
-满分 & 30 & 10 & 10  & 12 & 12  & 12 & 14 & \raisebox{0.4em}{100}\rule{0pt}{8mm}\\
-\hline
-得分 &    &    &     &    &    &    &    &\rule{0pt}{8mm} \\
-\hline		
-\end{tabular}
-\end{lstlisting}
+\section{cmc模板的字体说明}
 
-\section{中文字体说明}
-
-默认中文字体为思源 Noto 系列
+\begin{enumerate}
+\item 中文字体说明
 \begin{itemize}
-\item 安装字体的正确姿势：\textbf{鼠标右键 $\rightarrow$ 为所有用户安装(A)}
-\item 字体下载：\url{https://share.weiyun.com/9SuIV2YB}
-\item 自定义字体命令：{\cusong 思源宋体Bold}： \lstinline[style=iltx]|{\cusong 思源宋体Bold}|
+\item 主要使用的字体为思源Noto系列字体, 需要自行下载安装. 
+\begin{itemize}
+\item 右键, 为所有用户安装(A)
 \end{itemize}
-
-%\begin{enumerate}
-%\item abobe字体
-%\item 自定义：\lstinline[style=iltx]|{\zhongsong 华文中宋}| {\zhongsong 华文中宋}、\lstinline[style=iltx]|{\xingkai 华文行楷}| {\xingkai 华文行楷}
-%\end{enumerate}
-
-%\begin{table}[htbp]
-%\caption{中文字体说明}
-%\centering
-%\begin{tabular}{|cll|}
-%\hline 
-%\songti adobe宋体    & Adobe Song Std L     & \lstinline[style=iltx]|\songti adobe宋体|    \\
-%\kaishu adobe楷体    & Adobe Kaiti Std R    & \lstinline[style=iltx]|\kaishu adobe楷体|    \\
-%\heiti adobe黑体     & Adobe Heiti Std R    & \lstinline[style=iltx]|\heiti adobe黑体|     \\
-%\fangsong adobe仿宋  & Adobe Fangsong Std R & \lstinline[style=iltx]|\fangsong adobe仿宋|  \\
-%\zhongsong 华文中宋  & STZhongsong          & \lstinline[style=iltx]|\zhongsong 华文中宋|   \\
-%\xingkai 华文行楷    & STXingkai            &  \lstinline[style=iltx]|\xingkai 华文行楷|    \\
-%\hline	
-%\end{tabular} 
-%\end{table}
-
-\section{英文字体说明}
-
+\item 自定义的字体：华文中宋、华文行楷
+\begin{enumerate}
+\item \lstinline[style=iltx]|{\zhongsong 华文中宋}| {\zhongsong 华文中宋}、\lstinline[style=iltx]|{\xingkai 华文行楷}| {\xingkai 华文行楷}
+\item 若系统不存在此字体，则不定义
+\end{enumerate}
+\end{itemize}
+\item 英文字体说明
 \begin{enumerate}
 \item 英文字体粗斜：
 \begin{enumerate}
-	\item 推荐bm宏包(默认无) \lstinline[style=iltx]|$\bm{abcABC}$|$\bm{abcABC}$，\lstinline[style=iltx]|$\mbf{abcABC}$|$\mbf{abcABC}$
+	\item 推荐 \lstinline[style=iltx]|$\bm{abc}$| \quad $\bm{abc}$
 	\item 不推荐 \lstinline[style=iltx]|\bfit{Times New Roman Bold Italic}| \bfit{Times New Roman Bold Italic}
 \end{enumerate}
-\item 是否使用 mtpro2字体宏包？(非默认数学字体)
+\end{enumerate}
+\item 数学字体说明
+\begin{itemize}
+\item 默认的数学字体：XITS Math+Cambria Math
 \begin{enumerate}
-\item 使用mtpro2字体
-\begin{itemize}
-\item 安装：\href{http://www.latexstudio.net/archives/241.html}{LaTeX技巧693：安装 MathTime Professional 2 数学字体}
-\item 设置：math=mtpro2, 需安装 mtpro2 字体
-\end{itemize} 
-\item 不使用mtpro2字体
-\begin{itemize}
-\item 默认字体(无需安装), 也可选参数math=cm(默认无需添加)
+\item 若系统不存在 Cambria Math 字体, 则全部使用XITS Math字体
+\item 若存在Cambria Math字体, 则 \lstinline[style=iltx]|\int,\iint,\iiint,\oint,\oiint|将会被替换为Cambria Math字体
+\end{enumerate}
+\item 安装 mtpro2 宏包, 可选参数 math=mtpro2, 或者mtpro2. 默认不选
+\begin{enumerate}
+\item \href{http://www.latexstudio.net/archives/241.html}{LaTeX技巧693：安装 MathTime Professional 2 数学字体}
+\end{enumerate}
 \end{itemize}
 \end{enumerate}
-\item 已弃 Times New Roman 风格
-\end{enumerate}
 
-\section{填空题}\label{sec:tiankongti}
-\lstinline[style=iltx]|\blank{填空题答案}| \blank{填空题答案} 
+\section{填空题}
+\lstinline[style=iltx]|\blank[默认1.5cm]{填空题答案}| \blank{填空题答案} 
+\begin{itemize}
+\item 若答案 $<1.5$cm, 则下划线长度为1.5cm. 如：\blank{$\frac{1}{2}$} 
+\item 若答案长度 $\geqslant1.5$cm, 则下划线长度为答案的长度. 如：\blank{填空题答案} 
+\end{itemize}
 \begin{lstlisting}
-%\renewenvironment{solution}{\setbox0\vbox\bgroup}{\egroup\unskip} %注释则不显示solution环境的内容，即不显示填空题答案
+%\renewenvironment{solution}{\setbox0\vbox\bgroup}{\egroup\unskip} %注释则不显示答案
 \begin{solution}
-填空题的解答环境
+solution 为填空题的解答环境. 有时候不需要保留填空题的完整过程
 \end{solution}
 \end{lstlisting}
 
 \section{大题}
 \lstinline[style = iltx]|\section{大题}|和
-\lstinline[style=iltx]|\dati[默认缩进2em]{大题}|
+\lstinline[style=iltx]|\dati[可选缩进长度]{大题}|
+\begin{itemize}
+\item \lstinline[style=iltx]|\dati[可选缩进长度]{大题}| 的可缩进长度目前为编号前的缩进长度. 
+\end{itemize}
 \begin{lstlisting}[style=tsdtex]
 \dati{(本题15分) 在空间直角坐标系中，设单叶双曲面 $\Gamma$ 的方程为 $x^2+y^2-z^2=1$,设 $P$ 为空间的平面, 它交 $\Gamma$ 于一抛物线 $C$. 求该平面的法线与 $z$- 轴的夹角}
 \end{lstlisting}
 \dati{(本题15分) 在空间直角坐标系中，设单叶双曲面 $\Gamma$ 的方程为 $x^2+y^2-z^2=1$,设 $P$ 为空间的平面, 它交 $\Gamma$ 于一抛物线 $C$. 求该平面的法线与 $z$- 轴的夹角}\vspace{1ex}
-
-\begin{lstlisting}[style=tsdtex]
-\dati[0em]{(本题15分) 在空间直角坐标系中，设单叶双曲面 $\Gamma$ 的方程为 $x^2+y^2-z^2=1$,设 $P$ 为空间的平面, 它交 $\Gamma$ 于一抛物线 $C$. 求该平面的法线与 $z$- 轴的夹角}
-\end{lstlisting}
-\dati[0em]{(本题15分) 在空间直角坐标系中，设单叶双曲面 $\Gamma$ 的方程为 $x^2+y^2-z^2=1$,设 $P$ 为空间的平面, 它交 $\Gamma$ 于一抛物线 $C$. 求该平面的法线与 $z$- 轴的夹角}\vspace{1ex}
 
 \vspace{2.5ex}
 \noindent 解答环境: Solution, Proof, proof
@@ -168,15 +140,16 @@ Proof 环境
 \end{Proof}
 
 \vspace{1.5em}
-\noindent 分数线
+\noindent 分数线的设置
 \begin{itemize}
 \item 推荐 \lstinline[style=iltx]|\defen[默认0cm]{得分}|、\lstinline[style=iltx]|\score[默认0cm]{得分}|
-\item 不推荐 \lstinline[style=iltx]|\dfsxian{得分}|，\lstinline[style=iltx]|\cfsxian{得分}|，\lstinline[style=iltx]|\fsxian{长度(cm)}{得分}|
+\item 过时命令 \lstinline[style=iltx]|\dfsxian{得分}|，\lstinline[style=iltx]|\cfsxian{得分}|，\lstinline[style=iltx]|\fsxian{长度(cm)}{得分}|
 \end{itemize}
 
 
 
 \section{选择题}
+
 \begin{lstlisting}[style=tsdtex]
 \begin{tasks}(2) % 1，2，4
 \task $F'(x)G'(x)=1$
@@ -193,20 +166,6 @@ Proof 环境
 \end{tasks}
 
 
-\section{答案与试卷分离}
-
-默认显示全部答案, 模板提供了可选参数 \lstinline[style=iltx]|result=answer|以及\lstinline[style=iltx]|result=noanswer|
-\begin{enumerate}
-\item \lstinline[style=iltx]|result=answer| 显示试卷以及全部答案(包括选择题解析)
-\item \lstinline[style=iltx]|result=noanswer| 只显示试卷
-\item 填空题解析是否隐藏见: \ref{sec:tiankongti}
-\end{enumerate}  
-
-\section{自定义命令}
-\begin{enumerate}
-\item 微分算子d: \lstinline[style=iltx]|\dif|
-\item 矩阵的秩rank: \lstinline[style=iltx]|\rank|
-\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %-------------------------------结束---------------------------------
