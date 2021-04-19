@@ -1,4 +1,4 @@
-%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% This is file `CMC.sty'.
 %% Copyright 2018-2020 shaodongtang (shaodongtang@gmail.com)
 %%
@@ -7,10 +7,9 @@
 %% by 14级天大仁爱管理系金工唐绍东
 %% QQ 1096084877
 %% CMC.sty放入\texlive\texmf-local\tex\latex\local 然后 texhash
-%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % !Mode:: "TeX:UTF-8"
-% cmc.sty放入\texlive\texmf-local\tex\latex\local 然后 texhash
-\ProvidesPackage{CMC}[2020/03/25 v1.23 Non-standard LaTeX package]
+\ProvidesPackage{CMC}[2021/04/9 v1.24 Non-standard LaTeX package]
 %\documentclass[11pt,twoside]{article} % math=mtpro2、result=noanswer
 %\usepackage{CMC}
 \RequirePackage{kvoptions}
@@ -19,7 +18,7 @@
 \newcommand{\ekv}[1]{\kvsetkeys{CMC}{#1}}
 %------------ 设置默认参数 ----------------
 \DeclareStringOption[cm]{math}
-\DeclareStringOption[answer]{result}
+\DeclareStringOption[answer]{result} % 
 %---------------------------------------
 
 \DeclareVoidOption{mtpro2}{\ekv{math=mtpro2}}
@@ -33,7 +32,10 @@
 \RequirePackage[UTF8,heading]{ctex} % fontset=adobe(商业字体)
 
 %------------------------------- 大题 ----------------------------------%
-\ctexset{section = {name = {,、\hspace*{-5mm}},number = \chinese{section},format = {\zihao{5}\raggedright}}}
+\ctexset{section = {name = {,、\hspace*{-5mm}},
+                    number = \chinese{section},
+                    format = {\zihao{5}\raggedright}}
+}
 \RequirePackage{titlesec}%titlesec宏包调整section与正文间距
 \titlespacing*{\section}{0pt}{9pt}{4pt}
 %------------------------------- 大题 ----------------------------------%
@@ -49,13 +51,13 @@
 		阅卷人 & \rule{0pt}{6mm}\\\hline
 \end{tabular}} % 计分表格
 \newcounter{dati} % 定义大题计数器
-\newcommand{\dati}[2][2.55em]{\noindent\raisebox{-3.5ex}{
+\newcommand{\dati}[2][0em]{\noindent\raisebox{-3.5ex}{ % 之前为2.55em,现不缩进
 		\begin{minipage}[b]{9.2\ccwd}
 			\hspace{-2.5mm}\scoretable
 	\end{minipage}}%输出大题前计分表,下沉3.5个X字符高度,可调整
 	\begin{minipage}[t]{\textwidth-9.2\ccwd}
 		\hspace*{#1}\stepcounter{dati}\zhnumber{\thedati}、#2
-\end{minipage}}%输出大题序号,大题
+\end{minipage}\vspace*{0.5ex}}%输出大题序号,大题
 %===============================大题\dati{题目}================================
 
 
@@ -77,7 +79,7 @@
 % ----- Math option -----cm、mtpro2
 \ifdefstring{\CMC@math}{mtpro2}{
 	\let\Bbbk\relax
-	\RequirePackage{mtpro2}
+	\RequirePackage[amsbb]{mtpro2}
 }{\relax}
 \ifdefstring{\CMC@math}{cm}{
 \RequirePackage{amssymb}
@@ -86,8 +88,14 @@
 \setmathfont{XITS Math}
 %\setmathfont[range={\sum,\int,\iint,\iiint,\oint,\oiint}]{TeX Gyre Pagella Math}
 %\setmathfont[range={\int,\iint,\iiint,\oint,oiint}]{Libertinus Math} %直立积分的符号，缺\oiint
-\setmathfont[range={\int,\iint,\iiint,\oint,\oiint}]{Cambria Math} % Cambria Math  % win10
-%\setmathfont[Path=Fonts/,range={\int,\iint,\iiint,\oint,\oiint}]{Cambria Math.ttf} %Cambria Math  % overleaf 
+
+% Check to see if this font is installed system-wide
+\IfFontExistsTF{Cambria Math.ttf}{
+  \setmathfont[range={\int,\iint,\iiint,\oint,\oiint}]{Cambria Math}
+      }{\relax}
+\IfFontExistsTF{./Fonts/Cambria Math.ttf}{
+  \setmathfont[Path=Fonts/,range={\int,\iint,\iiint,\oint,\oiint}]{Cambria Math.ttf}}{\relax} % overleaf 新建Fonts文件夹
+
 \setmathfont[range={\sum}]{Latin Modern Math} %\int,\iint,\oint
 \setmathfontface\bm{XITS-BoldItalic} % \bm{英文}粗斜体
 }{\relax}
@@ -98,12 +106,21 @@
 \RequirePackage{xcolor}
 % \usepackage{comment}
 \ifdefstring{\CMC@result}{answer}{
-\newcommand{\blankcolor}[1]{{\color{black}#1}}	
-}{\relax}
+  \newcommand{\blankcolor}{\color{black}}	% 显示答案，则设置\blank颜色为黑色
+    }{\relax}
 \ifdefstring{\CMC@result}{noanswer}{
-\newcommand{\blankcolor}[1]{{\color{white}#1}}	
-}{\relax}
-\newcommand{\blank}[1]{\underline{\,\blankcolor{#1}\,}}
+   \newcommand{\blankcolor}{\color{white}}	% 不显示答案，则设置\blank颜色为白色
+      }{\relax}
+\newlength{\answerslength}
+\newcommand{\blank}[2][1.5cm]{ %
+  \settowidth{\answerslength}{#2} %
+  \ifdim\answerslength < #1
+    \underline{\makebox[#1][c]{\blankcolor #2}} %
+  \else
+    \underline{\makebox[\answerslength][c]{\blankcolor #2}} % #2 %
+  \fi
+}
+%\newcommand{\blank}[1]{\underline{\,\blankcolor{#1}\,}}
 %%----------- Proof\proof\Solution\solution环境 --------------%%
 \let\qedhere\relax
 \ifdefstring{\CMC@result}{answer}{
@@ -124,10 +141,10 @@
 
 %-------------------------字体设置--------------------------------------%
 
-%%--------------------------嫌弃新罗马字体---------------------------------
+%%--------------------------嫌弃新罗马字体----------------------------
 \newfontfamily\TNRBI{Times New Roman Bold Italic} %新罗马字体英文的粗斜体
-\newcommand{\bfit}[1]{\text{\TNRBI #1}} %amsmath 
-%%--------------------------------------------------------------------------------
+\newcommand{\bfit}[1]{\text{\TNRBI #1}} % amsmath 
+%%-----------------------------------------------------------------
 
 
 %==========================中文字体设置=============================%
@@ -138,25 +155,29 @@
 \renewcommand{\songti}{\CJKfontspec{Noto Serif CJK SC}} % 思源宋体
 \renewcommand{\heiti}{\CJKfontspec{Noto Sans CJK SC}} % 思源黑体
 \newcommand{\cusong}{\CJKfontspec{Noto Serif CJK SC Bold}} % 思源宋体
-%\def\xingkai{\CJKfontspec{STXingkai}}%华文行楷
-%\def\zhongsong{\CJKfontspec{STZhongsong}} %华文中宋
+
+\IfFontExistsTF{STXingkai}{
+\def\xingkai{\CJKfontspec{STXingkai}}}{\relax}%华文行楷
+\IfFontExistsTF{STZhongsong}{
+\def\zhongsong{\CJKfontspec{STZhongsong}}}{\relax} %华文中宋
 %=========================中文字体设置===========================%
 
 
-%------------------------------------------页眉页脚-%-装订线----------------------------------------%
+%------------------------------页眉页脚-%-装订线-------------------------%
 \RequirePackage{tikz}
 \usetikzlibrary{calc}
 \usetikzlibrary{circuits} %circuit handle symbol
 \RequirePackage{lastpage}
 %\RequirePackage{dashrule}%使用虚线宏包
-%%------------------------------分数线，引导线的设置---------------------------------------------
+%%--------------分数线，引导线的设置-------------------------------
 \def\cfsxian#1{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(5cm,0pt)node[inner sep=0pt]{(#1~分)\!\!};}\\}
 \def\dfsxian#1{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(3cm,0pt)node[inner sep=0pt]{(#1~分)\!\!};}\\}
 \def\fsxian#1#2{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(#1cm,0pt)node[inner sep=0pt]{(#2~分)\!\!};}\\}
 \newcommand{\defen}[2][0cm]{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(#1 ,0pt)node[inner sep=0pt]{(#2~分)};}\newline}
 \newcommand{\score}[2][0cm]{\hspace*{\fill}\raisebox{-1.1ex}{\tikz\draw[line width=1pt,dash pattern=on 1pt off 2.5pt on 1pt off 2.5pt] (0pt,0pt)--(#1 ,0pt)node[inner sep=0pt]{(#2~分)};}\newline}
 %\dfsxian{得分}\cfsxian{得分}\fsxian{长度(cm)}{得分} \defen[默认0cm]{得分}\score[默认0cm]{得分}
-%%-----------------------------------------------------------------------------------------------
+%%---------------------------------------------------------------------------
+
 \RequirePackage{fancyhdr}%使用页眉页脚宏包
 \pagestyle{fancy}
 \fancyhf{}
@@ -173,17 +194,10 @@
 	\draw[cmcdash] (obelow) -- (obelowa) -- ++(0,-10);
 	\end{tikzpicture}}
 \renewcommand{\headrulewidth}{0pt}
-%-------------------------------------------------------------------------------------------------
+%------------------------------------------------------------------------
 
 %%%%%%%%%%%%%%%%%%%%%------设置文档属性-------%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[colorlinks=true,bookmarksnumbered=true,linkcolor=black]{hyperref}
-\AtBeginDocument{\hypersetup{pdftitle={\@title},
-	pdfauthor={\@author},
-	pdfsubject={中国大学生数学竞赛}, %pdf主题 %\@date
-	pdfcreator={\@author},
-	pdfproducer={\LaTeX},
-	pdfkeywords={\@title,\@author, \@type, 大学生数学竞赛}
-	}}
 %%%%%%%%%%%%%%%%%%%%%------设置文档属性-------%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%--------------- 页面设置 ---------------%%
@@ -193,10 +207,12 @@
 \evensidemargin=0.5cm %偶数页页边距
 \setlength{\marginparsep}{-0.8cm}
 
-
-
-%%--------------------------添加水印：机密----------------------------------------%%
-\RequirePackage{graphicx} %插图
+%%-------------------添加水印：机密--------------------------%%
+\RequirePackage{graphicx} % 插图
+% 如果图片没有指定后缀, 依次按下列顺序搜索
+\DeclareGraphicsExtensions{.pdf,.eps,.jpg,.png}
+ % 设置图表搜索路径, 可以给图表文件夹取如下名字
+\graphicspath{{./figure/}{./figures/}{./image/}{./images/}{./graphics/}{./graphic/}{./pictures/}{./picture/}}
 \RequirePackage{wrapfig}
 \RequirePackage{eso-pic}
 \newcommand{\watermark}[3]{\AddToShipoutPictureBG{%
@@ -209,24 +225,36 @@
 \vfill}}}
 %\watermark{48}{11}{机密}  % 水印--第六届数学类
 %\watermark{60}{6}{14-金融工程-白兔兔}
-%%-----------------------------添加水印：机密---------------------------------------%%
+%%----------------------添加水印：机密-------------------------------%%
 
 
 \usepackage{tabularx} % 表格 tabularx环境
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
+\usepackage{makecell} %\makecell可在表项中使用\\命令换行
 
 \RequirePackage{enumitem}
 
-\def\examtime#1{\def\@examtime{#1}}
-\def\type#1{\def\@type{#1}}
+\global\let\@title\@empty
+\global\let\@author\@empty
+\global\let\@date\@empty
+\def\examtime#1{\gdef\@examtime{#1}}
+\def\type#1{\gdef\@type{#1}}
 \def\maketitle{
-{\centering
+\noindent\makebox[\textwidth][c]{
 \begin{tabularx}{\textwidth}{@{}XYX}
-\multicolumn{3}{c}{\zihao{-3}\heiti\@title}\\[1.5mm]
-\multicolumn{3}{c}{\zihao{4}（ \@type, \@date）}\\[1.1em]
+\multicolumn{3}{c}{\zihao{-3}\heiti\makecell{\@title}}\\[1.5mm]
+\multicolumn{3}{c}{\zihao{4}（ \@type, \@date）}\\[1ex]
 {\heiti\zihao{-4} 绝密$\bigstar$启用前} & (\@author) &\\[0.6em]
-\multicolumn{3}{c}{\zihao{4}考试形式：\underline{~闭卷~}\hspace{2mm}考试时间：\underline{~~\@examtime~~}分钟~\hspace{2mm}满分：\underline{~~100~~}分}		
-\end{tabularx}}}
+\multicolumn{3}{c}{\zihao{4}考试形式：\underline{~闭卷~}\hspace{2mm}考试时间：\underline{~~\@examtime~~}分钟~\hspace{2mm}满分：\underline{~~100~~}分}
+\end{tabularx}}
+\hypersetup{pdftitle={\@title},
+	pdfauthor={\@author},
+	pdfsubject={中国大学生数学竞赛}, % pdf主题 %\@date
+	pdfcreator={\@author},
+	pdfproducer={\LaTeX},
+	pdfkeywords={\@title,\@author,\@type,大学生数学竞赛}
+	}    
+}
 
 %------------------------------ 选择题 ----------------------------------%
 \RequirePackage{tasks}%选择题宏包，tasks环境
@@ -248,5 +276,4 @@
 %	\task 
 %\end{tasks}
 %------------------------------ 选择题 ----------------------------------%
-
-\endinput
+\endinput % 结束
